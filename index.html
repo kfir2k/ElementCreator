@@ -4,15 +4,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="main.js"></script>
+    <script defer src="main.js"></script>
+    <link rel="stylesheet" href="styles.css">
     <title>Document</title>
 </head>
 
 <body>
 
-    <div class="msg">
+    <div id="msg" class="msg">
         <h1>Welcome to my Element Creator</h1>
+        <button id="startBtn">Start</button>
     </div>
+
+    <main id="main" class="container hidden">
+
+        <div id="left-side">
+            <h2>Settings</h2>
+            <p>This is the content on the left side of the page.</p>
+
+            <div class="inputContianers">
+                <label for="backgroundColor">Change Background Color</label>
+                <input type="color" name="backgroundColor" id="backgroundColor">
+            </div>
+
+        </div>
+
+        <div id="right-side">
+            <div id="elementsPage"></div>
+        </div>
+
+
+    </main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
