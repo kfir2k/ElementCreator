@@ -61,6 +61,7 @@
 
 #right-side {
     flex: 4;
+    position: relative;
 }
 
 #left-side {
@@ -89,6 +90,14 @@
 #left-side input[type="color"] {
     width: 30px;
     height: 30px;
+
+}
+
+#left-side #cssCopyBox {
+    position: absolute;
+    left: 2;
+    bottom: 0;
+    resize: none;
 
 }
 
