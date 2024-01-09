@@ -1,8 +1,12 @@
 
+
 const Element = {
     id: undefined,
     class: undefined,
     date: undefined,
+    subElement: undefined,
+    css: undefined,
+    html: undefined,
     styles: {
 
         width: undefined,
