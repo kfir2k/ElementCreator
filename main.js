@@ -1,4 +1,4 @@
-import { updateCssString, handleFormSubmit, handleInputChange, setBackgroundColor } from "./services.js"
+import { updateCssString, renderCssBox, handleFormSubmit, handleInputChange, setBackgroundColor } from "./services.js"
 
 
 
@@ -18,6 +18,7 @@ function controller() {
     console.log(colorValue);
     setBackgroundColor(colorValue)
     updateCssString(colorValue)
+    renderCssBox()
 
     // handleInputChange(colorPicker.value)
 

@@ -2,6 +2,7 @@
 const Element = {
     id: undefined,
     class: undefined,
+    date: undefined,
     styles: {
 
         width: undefined,
@@ -12,6 +13,7 @@ const Element = {
         shadow: undefined,
 
     },
+
 
 
 }
@@ -32,6 +34,15 @@ let htmlString = `
 `;
 
 
+let cssString = `.body {
+    background-color: $;
+}`;
+
+
+
+
+
+
 
 
 const body = document.getElementById("elementsPage")
@@ -39,16 +50,32 @@ const cssBox = document.getElementById("cssCopyBox")
 
 
 
-function updateCssString(colorValue) {
-    let cssString = `.body {
-    background-color: ${colorValue} ;
-}`;
+let updateCssString = (colorValue) => {
+    // if()
+    let colorBefore = cssString.slice(30, 31)
 
-    cssBox.textContent = cssString
+    console.log("color before", colorBefore);
+
+    if (colorBefore === "$") {
+        cssString = cssString.replace(colorBefore, colorValue)
+        console.log("IN IF");
+
+    } else {
+        colorBefore = cssString.slice(30, 37)
+        cssString = cssString.replace(colorBefore, colorValue)
+        console.log("IN ELSEEEEEEEEEEEEEEEEEE");
+    }
+
+
     console.log(cssString);
+}
 
 
 
+
+
+function renderCssBox() {
+    cssBox.textContent = cssString
 }
 
 
@@ -103,4 +130,5 @@ export {
     handleFormSubmit,
     setBackgroundColor,
     updateCssString,
+    renderCssBox,
 }
