@@ -24,5 +24,32 @@ function controller() {
 
 }
 
+document.getElementById("elementProperties").addEventListener("submit", elController)
+
+function elController(event) {
+    event.preventDefault()
+
+
+
+
+    let type = document.getElementById("type")
+    let id = document.getElementById("id")
+    let className = document.getElementById("class")
+
+    console.log("elemnts values", type.value, id.value, className.value);
+    
+    
+    type.value =
+
+
+
+
+
+    type.value = "";
+    id.value = "";
+    className.value = "";
+
+}
+
 
 

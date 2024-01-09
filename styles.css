@@ -72,6 +72,12 @@
     margin: 20px;
 }
 
+#left-side #elementProperties {
+    display: flex;
+    flex-direction: column;
+    height: 300px;
+}
+
 #right-side {
     display: flex;
     justify-content: center;

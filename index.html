@@ -20,15 +20,28 @@
 
         <div id="left-side">
             <h2>Settings</h2>
-            <p>This is the content on the left side of the page.</p>
 
             <div class="inputContianers">
                 <label for="colorPickerBackground">Change Background Color</label>
                 <input type="color" name="colorPickerBackground" id="colorPickerBackground">
             </div>
+            <form id="elementProperties">
+                <label for="type">Type of Element</label>
+                <input type="text" name="type" id="type">
 
-            <button id="saveBtn">Save</button>
-            <button id="deleteBtn">Delete</button>
+                <label for="id">Id</label>
+                <input type="text" name="id" id="id">
+
+                <label for="class">Class</label>
+                <input type="text" name="class" id="class">
+
+
+
+                <button id="saveBtn">Save</button>
+                <button id="deleteBtn">Delete</button>
+            </form>
+
+
 
 
             <textarea readonly name="" id="cssCopyBox" cols="30" rows="10">test</textarea>

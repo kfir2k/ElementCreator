@@ -1,4 +1,4 @@
-
+let allElementsArry = []
 
 const Element = {
     id: undefined,
