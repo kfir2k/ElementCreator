@@ -99,10 +99,9 @@
 
 }
 
-#left-side #cssCopyBox {
-    position: absolute;
-    left: 2;
-    bottom: 0;
+#left-side #cssCopyBox,
+#htmlCopyBox {
+
     resize: none;
 
 }

@@ -1,7 +1,4 @@
-import { updateCssString, renderCssBox, handleFormSubmit, handleInputChange, setBackgroundColor } from "./services.js"
-
-
-
+import { renderHtmlCopyBox, addElement, setElementProperties, updateCssString, renderCssBox, setBackgroundColor } from "./services.js"
 
 document.getElementById("startBtn").addEventListener("click", () => {
     document.getElementById("msg").classList.add("hidden")
@@ -28,26 +25,15 @@ document.getElementById("elementProperties").addEventListener("submit", elContro
 
 function elController(event) {
     event.preventDefault()
+    let obj = setElementProperties()
+    // console.log("obj", obj);
+    addElement(obj)
+    // renderObjCss(obj.html) //string of proprty
+    renderHtmlCopyBox(obj) //string of proprty
 
 
 
 
-    let type = document.getElementById("type")
-    let id = document.getElementById("id")
-    let className = document.getElementById("class")
-
-    console.log("elemnts values", type.value, id.value, className.value);
-    
-    
-    type.value =
-
-
-
-
-
-    type.value = "";
-    id.value = "";
-    className.value = "";
 
 }
 
