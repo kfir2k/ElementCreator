@@ -28,14 +28,8 @@ function elController(event) {
     let obj = setElementProperties()
     // console.log("obj", obj);
     addElement(obj)
+    console.log(obj);
     // renderObjCss(obj.html) //string of proprty
     renderHtmlCopyBox(obj) //string of proprty
 
-
-
-
-
 }
-
-
-
