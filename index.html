@@ -27,7 +27,16 @@
             </div>
             <form id="elementProperties">
                 <label for="type">Type of Element</label>
-                <input type="text" name="type" id="type">
+                <select type="text" name="type" id="type">
+                    <option value="div">Div</option>
+                    <option value="header">Header</option>
+                    <option value="main">Main</option>
+                    <option value="button">Button</option>
+                    <option value="ul">Unordered list</option>
+                    <option value="ol">Ordered list</option>
+                    <option value="li">List item</option>
+                    <option value="button">button</option>
+                </select>
 
                 <label for="id">Id</label>
                 <input type="text" name="id" id="id">
@@ -36,9 +45,44 @@
                 <input type="text" name="class" id="class">
 
 
+                <label for="subElement">Sub Element?</label>
+                <div>
+                    <input type="checkbox" name="subElement" id="subElement">
+                </div>
+                <h2>Style of element</h2>
+                <label for="width">Width</label>
+                <input type="text" name="width" id="width">
 
-                <button id="saveBtn">Save</button>
-                <button id="deleteBtn">Delete</button>
+                <label for="hight">hight</label>
+                <input type="text" name="hight" id="hight">
+
+                <label for="backgroundColor">Background Color</label>
+                <input type="text" name="backgroundColor" id="backgroundColor">
+
+                <label for="border">Border</label>
+                <input type="text" name="border" id="border">
+
+
+                <label for="shadow">shadow</label>
+                <input type="text" name="shadow" id="shadow">
+
+
+
+                <div>
+                    <button id="saveBtn">Save</button>
+                    <button id="deleteBtn">Delete</button>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
             </form>
 
 
