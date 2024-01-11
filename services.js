@@ -3,16 +3,23 @@ const allElementsArry = []
 const elementObj = {
     id: undefined,
     class: undefined,
+    innerText: undefined,
     date: undefined,
-    subElement: undefined,
+    subElement: false,
     css: ``,
     html: ``,
     styles: {
-
+        fontSize: undefined,
+        fontFamily: undefined,
+        fontWeight: undefined,
+        fontStyle: undefined,
+        lineHeight: undefined,
         width: 100,
         height: 100,
-        color: undefined,
+        margin: undefined,
+        padding: undefined,
         backgroundColor: "blue",
+        color: undefined,
         border: undefined,
         shadow: undefined,
 
@@ -68,10 +75,53 @@ function setElementProperties() {
     let id = document.getElementById("id")
     let className = document.getElementById("class")
     type.value = type.value || "div"
-
     elementObj.type = type.value
     elementObj.id = id.value
     elementObj.class = className.value
+
+
+    // Additional properties
+    let innerText = document.getElementById("innerText");
+    elementObj.innerText = innerText.value;
+
+    // Font settings
+    elementObj.styles.fontSize = document.getElementById("fontSize").value;
+    elementObj.styles.fontFamily = document.getElementById("fontFamily").value;
+    elementObj.styles.fontWeight = document.getElementById("fontWeight").value;
+    elementObj.styles.fontStyle = document.getElementById("fontStyle").value;
+    elementObj.styles.lineHeight = document.getElementById("lineHeight").value;
+
+    // Sub Element
+    let subElementCheckbox = document.getElementById("subElement");
+    elementObj.subElement = subElementCheckbox.checked;
+
+    // Style of element
+    elementObj.styles.width = document.getElementById("width").value;
+    elementObj.styles.height = document.getElementById("hight").value;
+    elementObj.styles.margin = document.getElementById("margin").value;
+    elementObj.styles.padding = document.getElementById("padding").value;
+    elementObj.styles.backgroundColor = document.getElementById("backgroundColor").value;
+    elementObj.styles.color = document.getElementById("color").value;
+
+    // Border settings
+    elementObj.styles.border = `${document.getElementById("borderSize").value}${document.getElementById("unitsBorder").value} ${document.getElementById("borderType").value} ${document.getElementById("borderColor").value}`;
+
+    // Shadow
+    elementObj.styles.shadow = document.getElementById("shadow").value;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

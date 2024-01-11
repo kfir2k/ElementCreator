@@ -10,21 +10,21 @@
 </head>
 
 <body>
-
     <div id="msg" class="msg">
         <h1>Welcome to my Element Creator</h1>
         <button id="startBtn">Start</button>
     </div>
-
     <main id="main" class="container hidden">
-
         <div id="left-side">
             <h2>Settings</h2>
-
             <div class="inputContianers">
                 <label for="colorPickerBackground">Change Background Color</label>
                 <input type="color" name="colorPickerBackground" id="colorPickerBackground">
             </div>
+
+
+
+            
             <form id="elementProperties">
                 <label for="type">Type of Element</label>
                 <select type="text" name="type" id="type">
@@ -37,14 +37,64 @@
                     <option value="li">List item</option>
                     <option value="button">button</option>
                 </select>
-
                 <label for="id">Id</label>
                 <input type="text" name="id" id="id">
-
                 <label for="class">Class</label>
                 <input type="text" name="class" id="class">
-
-
+                <label for="innerText">Inner Text</label>
+                <input type="text" name="innerText" id="innerText">
+                <section id="all-font-settings">
+                    <h2>Font settings</h2>
+                    <div>
+                        <label for="fontSize">Size</label>
+                        <input type="number" name="fontSize" id="fontSize">
+                        <select name="unitsFont" id="unitsFont">
+                            <option value="px">PX</option>
+                            <option value="em">EM</option>
+                            <option value="rem">REM</option>
+                            <option value="vh">VH</option>
+                            <option value="vw">VW</option>
+                            <option value="%">%</option>
+                            <option value="pt">PT</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="fontFamily">Family:</label>
+                        <select id="fontFamily">
+                            <option value="'Arial', sans-serif">Arial</option>
+                            <option value="'Times New Roman', serif">Times New Roman</option>
+                            <option value="'Courier New', monospace">Courier New</option>
+                            <option value="'Georgia', serif">Georgia</option>
+                            <option value="'Verdana', sans-serif">Verdana</option>
+                            <option value="'Helvetica', sans-serif">Helvetica</option>
+                            <option value="'Trebuchet MS', sans-serif">Trebuchet MS</option>
+                            <option value="'Palatino Linotype', serif">Palatino Linotype</option>
+                            <option value="'Lucida Sans Unicode', sans-serif">Lucida Sans Unicode</option>
+                            <option value="'Garamond', serif">Garamond</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="fontWeight">Weight</label>
+                        <select id="fontWeight">
+                            <option value="normal">Normal</option>
+                            <option value="bold">Bold</option>
+                            <option value="bolder">Bolder</option>
+                            <option value="lighter">Lighter</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="fontStyle">Style</label>
+                        <select id="fontStyle">
+                            <option value="normal">Normal</option>
+                            <option value="italic">Italic</option>
+                            <option value="oblique">Oblique</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="lineHeight">Line Height:</label>
+                        <input type="number" id="lineHeight" step="0.1">
+                    </div>
+                </section>
                 <label for="subElement">Sub Element?</label>
                 <div>
                     <input type="checkbox" name="subElement" id="subElement">
@@ -52,14 +102,16 @@
                 <h2>Style of element</h2>
                 <label for="width">Width</label>
                 <input type="text" name="width" id="width">
-
-                <label for="hight">hight</label>
+                <label for="hight">Hight</label>
                 <input type="text" name="hight" id="hight">
-
+                <label for="margin">Margin</label>
+                <input type="text" name="margin" id="margin">
+                <label for="padding">Padding</label>
+                <input type="text" name="padding" id="padding">
                 <label for="backgroundColor">Background Color</label>
                 <input type="text" name="backgroundColor" id="backgroundColor">
-
-
+                <label for="color">Color</label>
+                <input type="text" name="color" id="color">
                 <section id="all-border-settings">
                     <h2>Border settings</h2>
                     <div>
@@ -92,76 +144,21 @@
                             <option value="outset">Outset</option>
                         </select>
                     </div>
-
-
-
                 </section>
-
                 <label for="shadow">shadow</label>
                 <input type="text" name="shadow" id="shadow">
-
-
-
                 <div>
                     <button id="saveBtn">Save</button>
                     <button id="deleteBtn">Delete</button>
                 </div>
-
-
-
-
-
-
-
-
-
-
-
             </form>
-
-
-
-
             <textarea readonly name="" id="cssCopyBox" cols="30" rows="10">444</textarea>
             <textarea readonly name="" id="htmlCopyBox" cols="30" rows="10">234</textarea>
-
-
-
-
         </div>
-
         <div id="right-side">
             <div id="elementsPage"></div>
         </div>
-
-
     </main>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </body>
 
 </html>
