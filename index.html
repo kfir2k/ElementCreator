@@ -59,9 +59,43 @@
                 <label for="backgroundColor">Background Color</label>
                 <input type="text" name="backgroundColor" id="backgroundColor">
 
-                <label for="border">Border</label>
-                <input type="text" name="border" id="border">
 
+                <section id="all-border-settings">
+                    <h2>Border settings</h2>
+                    <div>
+                        <label for="borderSize">Size</label>
+                        <input type="number" name="borderSize" id="borderSize">
+                        <select name="unitsBorder" id="unitsBorder">
+                            <option value="px">PX</option>
+                            <option value="em">EM</option>
+                            <option value="rem">REM</option>
+                            <option value="vh">VH</option>
+                            <option value="vw">VW</option>
+                            <option value="%">%</option>
+                            <option value="pt">PT</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="borderColor">Color</label>
+                        <input type="color" name="borderColor" id="borderColor">
+                    </div>
+                    <div>
+                        <label for="borderType">Select Border Type:</label>
+                        <select id="borderType">
+                            <option value="solid">Solid</option>
+                            <option value="dashed">Dashed</option>
+                            <option value="dotted">Dotted</option>
+                            <option value="double">Double</option>
+                            <option value="groove">Groove</option>
+                            <option value="ridge">Ridge</option>
+                            <option value="inset">Inset</option>
+                            <option value="outset">Outset</option>
+                        </select>
+                    </div>
+
+
+
+                </section>
 
                 <label for="shadow">shadow</label>
                 <input type="text" name="shadow" id="shadow">
