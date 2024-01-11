@@ -9,15 +9,15 @@ const elementObj = {
     css: ``,
     html: ``,
     styles: {
-        fontSize: undefined,
+        fontSize: undefined, unitsFont:undefined,
         fontFamily: undefined,
         fontWeight: undefined,
         fontStyle: undefined,
         lineHeight: undefined,
-        width: 100,
-        height: 100,
-        margin: undefined,
-        padding: undefined,
+        width: 100, unitsWidth: undefined,
+        height: 100, unitsHight: undefined,
+        margin: undefined, unitsMargin: undefined,
+        padding: undefined, unitsPadding: undefined,
         backgroundColor: "blue",
         color: undefined,
         border: undefined,
@@ -84,6 +84,16 @@ function setElementProperties() {
     let innerText = document.getElementById("innerText");
     elementObj.innerText = innerText.value;
 
+    // All units
+    elementObj.styles.unitsFont = document.getElementById("unitsFont").value;
+    elementObj.styles.unitsHight = document.getElementById("unitsHight").value;
+    elementObj.styles.unitsWidth = document.getElementById("unitsWidth").value;
+    elementObj.styles.unitsMargin = document.getElementById("unitsMargin").value;
+    elementObj.styles.unitsPadding = document.getElementById("unitsPadding").value;
+    elementObj.styles.unitsBorder = document.getElementById("unitsBorder").value;
+
+
+
     // Font settings
     elementObj.styles.fontSize = document.getElementById("fontSize").value;
     elementObj.styles.fontFamily = document.getElementById("fontFamily").value;
@@ -110,6 +120,52 @@ function setElementProperties() {
     elementObj.styles.shadow = document.getElementById("shadow").value;
 
 
+    const cssSelectorType = cssBoxSelectorValidation()
+
+    //=======================cssBox String Create part================================================
+
+
+    let allCssBoxStringCombinedArry = []
+
+    const cssStylesToCheck = ["fontSize", "fontFamily", "fontWeight", "fontStyle", "lineHeight", "width", "height", "margin", "padding", "backgroundColor", "color", "border", "shadow"]
+    cssStylesToCheck.forEach(value => {
+        if (elementObj.styles[value]) {
+            if ("fontSize") {
+                allCssBoxStringCombinedArry.push(`${value}: ${elementObj.styles[value]} ${elementObj.styles.unitsFont}
+            `)
+            }
+            if ("width") {
+                allCssBoxStringCombinedArry.push(`${value}: ${elementObj.styles[value]} ${elementObj.styles.unitsWidth}
+            `)
+            }
+            if ("height") {
+                allCssBoxStringCombinedArry.push(`${value}: ${elementObj.styles[value]} ${elementObj.styles.unitsHeight}
+            `)
+            }
+            if ("margin") {
+                allCssBoxStringCombinedArry.push(`${value}: ${elementObj.styles[value]} ${elementObj.styles.unitsMargin}
+            `)
+            }
+            if ("padding") {
+                allCssBoxStringCombinedArry.push(`${value}: ${elementObj.styles[value]} ${elementObj.styles.unitsPadding}
+            `)
+            }
+            if ("border") {
+                allCssBoxStringCombinedArry.push(`${value}: ${elementObj.styles[value]} ${elementObj.styles.unitsBorder}
+            `)
+            }
+                
+                allCssBoxStringCombinedArry.push(`${value}: "${elementObj.styles[value]}"
+            `)
+        }
+
+        
+    })
+    console.log('==================================================================',allCssBoxStringCombinedArry);
+
+    
+    
+    
 
 
 
@@ -117,14 +173,8 @@ function setElementProperties() {
 
 
 
-
-
-
-
-
-
-
-
+//================================================================================================
+//==============htmlBox string create part========================================================
     let propertyArray = [];
     if (elementObj.id) {
         propertyArray.push(`id="${elementObj.id}"`);
@@ -136,51 +186,47 @@ function setElementProperties() {
     elementObj.html = `<${elementObj.type} ${elPropertys}></${elementObj.type}>`;
     console.log("from setElementProperties", allElementsArry);
 
-
-
-
-
-
-
-
-
-
-
+//===============================================================================================
 
 
     allElementsArry.push({ ...elementObj })
-
     type.value = "";
     id.value = "";
     className.value = "";
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     return elementObj
 
 }
 
+
+function cssBoxSelectorValidation() {
+    let cssSelectorType = ""
+    if (elementObj.class) {
+        cssSelectorType = "."
+        
+    }
+    if (!elementObj.class && elementObj.id) {
+        cssSelectorType = "#"
+    }
+
+    return cssSelectorType
+        
+}
+
+
+
 function addElement(obj) {
 
     const el = document.createElement(obj.type);
-    el.id = obj.id;
-    el.classList.add(obj.class);
+
+    if (obj.id) {
+        el.id = obj.id;
+    }
+    if (obj.class) {
+        el.classList.add(obj.class);
+    }
+    
+    
     el.style.backgroundColor = 'lightblue';
     el.style.padding = '10px';
     body.appendChild(el)
