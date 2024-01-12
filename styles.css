@@ -7,8 +7,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
-.display-flex-center-column
-{
+.display-flex-center-column {
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -74,10 +73,19 @@
 
 #left-side {
     background-color: #004079;
+    font-size: 0.8em;
 }
 
 #left-side p {
     margin: 20px;
+
+}
+
+#left-side h2 {
+    text-align: center;
+    font-size: 1em;
+
+
 }
 
 #left-side #elementProperties {
@@ -101,23 +109,24 @@
     overflow: auto;
     scrollbar-width: thin;
     scrollbar-color: #00b3ff #e0e0e0;
+
     &::-webkit-scrollbar {
-            width: 8px;
-        }
-    
-        &::-webkit-scrollbar-thumb {
-            background-color: #00b3ff;
-            border-radius: 4px;
-        }
-    
-        &::-webkit-scrollbar-track {
-            background-color: #e0e0e0;
-        }
-    
-        /* Change thumb color on hover for WebKit browsers */
-        &:hover::-webkit-scrollbar-thumb {
-            background-color: #00b3ff;
-        }
+        width: 8px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: #00b3ff;
+        border-radius: 4px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background-color: #e0e0e0;
+    }
+
+    /* Change thumb color on hover for WebKit browsers */
+    &:hover::-webkit-scrollbar-thumb {
+        background-color: #00b3ff;
+    }
 }
 
 
@@ -131,30 +140,32 @@
 #htmlCopyBox {
 
     resize: none;
-    
+
 
 }
 
 #all-border-settings {
     background-color: rgb(0, 20, 37);
-    margin: 30px 0;
+    display: none;
 }
+
 #all-font-settings {
     display: none;
     background-color: rgb(0, 20, 37);
     margin: 30px 0;
 }
 
-#copyBoxsContainer{
+#copyBoxsContainer {
     margin-top: 30px;
     display: flex;
     justify-content: space-around;
 }
 
-#allElementColorSettingsContainer{
+#allElementColorSettingsContainer {
     margin: 20px 20px 0 20px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 
 }
 
@@ -162,14 +173,23 @@
 
 
 
+#sizingStyleOfElementContainer {
+    display: flex;
+    flex-direction: column;
+    background-color: darkcyan;
+}
 
 
 
 
 
 
-
-
+#switchMenuBtns {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
 
 
 

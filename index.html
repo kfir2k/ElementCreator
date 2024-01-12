@@ -16,7 +16,6 @@
     </div>
     <main id="main" class="container hidden">
         <div id="left-side">
-            <h2>Settings</h2>
             <div class="inputContianers">
                 <label for="colorPickerBackground">Change Background Color</label>
                 <input type="color" name="colorPickerBackground" id="colorPickerBackground">
@@ -111,50 +110,53 @@
                     <input type="checkbox" name="subElement" id="subElement">
                 </div>
                 <h2>Style of element</h2>
-                <label for="width">Width</label>
-                <input type="number" name="width" id="width">
-                <select name="unitsWidth" id="unitsWidth">
-                    <option value="px">PX</option>
-                    <option value="em">EM</option>
-                    <option value="rem">REM</option>
-                    <option value="vh">VH</option>
-                    <option value="vw">VW</option>
-                    <option value="%">%</option>
-                    <option value="pt">PT</option>
-                </select>
-                <label for="height">Height</label>
-                <input type="number" name="height" id="height">
-                <select name="unitsHeight" id="unitsHeight">
-                    <option value="px">PX</option>
-                    <option value="em">EM</option>
-                    <option value="rem">REM</option>
-                    <option value="vh">VH</option>
-                    <option value="vw">VW</option>
-                    <option value="%">%</option>
-                    <option value="pt">PT</option>
-                </select>
-                <label for="margin">Margin</label>
-                <input type="number" name="margin" id="margin">
-                <select name="unitsMargin" id="unitsMargin">
-                    <option value="px">PX</option>
-                    <option value="em">EM</option>
-                    <option value="rem">REM</option>
-                    <option value="vh">VH</option>
-                    <option value="vw">VW</option>
-                    <option value="%">%</option>
-                    <option value="pt">PT</option>
-                </select>
-                <label for="padding">Padding</label>
-                <input type="number" name="padding" id="padding">
-                <select name="unitsPadding" id="unitsPadding">
-                    <option value="px">PX</option>
-                    <option value="em">EM</option>
-                    <option value="rem">REM</option>
-                    <option value="vh">VH</option>
-                    <option value="vw">VW</option>
-                    <option value="%">%</option>
-                    <option value="pt">PT</option>
-                </select>
+                <section id="sizingStyleOfElementContainer">
+                    <label for="width">Width</label>
+                    <input type="number" name="width" id="width">
+                    <select name="unitsWidth" id="unitsWidth">
+                        <option value="px">PX</option>
+                        <option value="em">EM</option>
+                        <option value="rem">REM</option>
+                        <option value="vh">VH</option>
+                        <option value="vw">VW</option>
+                        <option value="%">%</option>
+                        <option value="pt">PT</option>
+                    </select>
+                    <label for="height">Height</label>
+                    <input type="number" name="height" id="height">
+                    <select name="unitsHeight" id="unitsHeight">
+                        <option value="px">PX</option>
+                        <option value="em">EM</option>
+                        <option value="rem">REM</option>
+                        <option value="vh">VH</option>
+                        <option value="vw">VW</option>
+                        <option value="%">%</option>
+                        <option value="pt">PT</option>
+                    </select>
+                    <label for="margin">Margin</label>
+                    <input type="number" name="margin" id="margin">
+                    <select name="unitsMargin" id="unitsMargin">
+                        <option value="px">PX</option>
+                        <option value="em">EM</option>
+                        <option value="rem">REM</option>
+                        <option value="vh">VH</option>
+                        <option value="vw">VW</option>
+                        <option value="%">%</option>
+                        <option value="pt">PT</option>
+                    </select>
+                    <label for="padding">Padding</label>
+                    <input type="number" name="padding" id="padding">
+
+                    <select name="unitsPadding" id="unitsPadding">
+                        <option value="px">PX</option>
+                        <option value="em">EM</option>
+                        <option value="rem">REM</option>
+                        <option value="vh">VH</option>
+                        <option value="vw">VW</option>
+                        <option value="%">%</option>
+                        <option value="pt">PT</option>
+                    </select>
+                </section>
                 <div id="allElementColorSettingsContainer">
                     <label for="background-color">Background Color</label>
                     <input type="color" name="background-color" id="background-color">
@@ -203,13 +205,11 @@
                     <button id="deleteBtn">Delete</button>
                 </div>
             </form>
-            <button id="inputPage1">1</button>
-            <button id="inputPage2">2</button>
-            <button id="inputPage3">3</button>
+
             <div id="copyBoxsContainer">
                 <div class="display-flex-center-column">
-                 <label for="cssCopyBox">CSS COPY</label>
-                 <textarea readonly name="cssCopyBox" id="cssCopyBox"></textarea>
+                    <label for="cssCopyBox">CSS COPY</label>
+                    <textarea readonly name="cssCopyBox" id="cssCopyBox"></textarea>
                 </div>
                 <div class="display-flex-center-column">
                     <label for="cssCopyBox">HTML COPY</label>
@@ -217,7 +217,19 @@
                 </div>
             </div>
 
+            <div id="switchMenuBtns">
+                <button id="inputPage1">1</button>
+                <button id="inputPage2">2</button>
+                <button id="inputPage3">3</button>
+            </div>
+
+
+
+
+
+
         </div>
+
         <div id="right-side">
             <div id="elementsPage"></div>
         </div>
