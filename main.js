@@ -1,5 +1,14 @@
 import { renderHtmlCopyBox, addElement, setElementProperties, updateCssString, renderCssBoxCopyBox, setBackgroundColor } from "./services.js"
 
+document.getElementById("inputPage1").addEventListener("click", () => {
+    document.getElementById("all-font-settings").style.display = "block"
+})
+document.getElementById("inputPage2").addEventListener("click", () => {
+    document.getElementById("all-font-settings").style.display = "none"
+
+})
+
+
 document.getElementById("startBtn").addEventListener("click", () => {
     document.getElementById("msg").classList.add("hidden")
     document.getElementById("main").classList.remove("hidden")

@@ -155,10 +155,14 @@
                     <option value="%">%</option>
                     <option value="pt">PT</option>
                 </select>
-                <label for="background-color">Background Color</label>
-                <input type="color" name="background-color" id="background-color">
-                <label for="color">Color</label>
-                <input type="color" name="color" id="color">
+                <div id="allElementColorSettingsContainer">
+                    <label for="background-color">Background Color</label>
+                    <input type="color" name="background-color" id="background-color">
+                    <label for="color">Color</label>
+                    <input type="color" name="color" id="color">
+                </div>
+
+
                 <section id="all-border-settings">
                     <h2>Border settings</h2>
                     <div>
@@ -192,8 +196,8 @@
                         </select>
                     </div>
                 </section>
-                <label for="shadow">shadow</label>
-                <input type="text" name="shadow" id="shadow">
+                <!--<label for="shadow">shadow</label>
+                <input type="text" name="shadow" id="shadow">-->
                 <div>
                     <button id="saveBtn">Save</button>
                     <button id="deleteBtn">Delete</button>
@@ -201,11 +205,18 @@
             </form>
             <button id="inputPage1">1</button>
             <button id="inputPage2">2</button>
-            <button>3</button>
-            <label for="cssCopyBox">CSS COPY</label>
-            <textarea readonly name="cssCopyBox" id="cssCopyBox" cols="30" rows="10"></textarea>
-            <label for="cssCopyBox">HTML COPY</label>
-            <textarea readonly name="htmlCopyBox" id="htmlCopyBox" cols="30" rows="10"></textarea>
+            <button id="inputPage3">3</button>
+            <div id="copyBoxsContainer">
+                <div class="display-flex-center-column">
+                 <label for="cssCopyBox">CSS COPY</label>
+                 <textarea readonly name="cssCopyBox" id="cssCopyBox"></textarea>
+                </div>
+                <div class="display-flex-center-column">
+                    <label for="cssCopyBox">HTML COPY</label>
+                    <textarea readonly name="htmlCopyBox" id="htmlCopyBox"></textarea>
+                </div>
+            </div>
+
         </div>
         <div id="right-side">
             <div id="elementsPage"></div>
