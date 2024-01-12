@@ -1,4 +1,4 @@
-import { renderHtmlCopyBox, addElement, setElementProperties, updateCssString, renderCssBox, setBackgroundColor } from "./services.js"
+import { renderHtmlCopyBox, addElement, setElementProperties, updateCssString, renderCssBoxCopyBox, setBackgroundColor } from "./services.js"
 
 document.getElementById("startBtn").addEventListener("click", () => {
     document.getElementById("msg").classList.add("hidden")
@@ -15,7 +15,7 @@ function controller() {
     console.log(colorValue);
     setBackgroundColor(colorValue)
     updateCssString(colorValue)
-    renderCssBox()
+    renderCssBoxCopyBox()
 
     // handleInputChange(colorPicker.value)
 
@@ -26,10 +26,9 @@ document.getElementById("elementProperties").addEventListener("submit", elContro
 function elController(event) {
     event.preventDefault()
     let obj = setElementProperties()
-    // console.log("obj", obj);
     addElement(obj)
     console.log(obj);
-    // renderObjCss(obj.html) //string of proprty
     renderHtmlCopyBox(obj) //string of proprty
+    renderCssBoxCopyBox(obj)
 
 }

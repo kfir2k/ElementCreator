@@ -9,16 +9,17 @@ const elementObj = {
     css: ``,
     html: ``,
     styles: {
-        fontSize: undefined, unitsFont:undefined,
-        fontFamily: undefined,
-        fontWeight: undefined,
-        fontStyle: undefined,
-        lineHeight: undefined,
-        width: 100, unitsWidth: undefined,
-        height: 100, unitsHight: undefined,
+        font_size: undefined, unitsFont:undefined,
+        font_family: undefined,
+        font_weight: undefined,
+        font_style: undefined,
+        line_height: undefined,
+        text_align: undefined,
+        width: undefined, unitsWidth: undefined,
+        height: undefined, unitsHeight: undefined,
         margin: undefined, unitsMargin: undefined,
         padding: undefined, unitsPadding: undefined,
-        backgroundColor: "blue",
+        background_color: undefined,
         color: undefined,
         border: undefined,
         shadow: undefined,
@@ -56,16 +57,7 @@ let updateCssString = (colorValue) => {
 
 }
 
-function renderCssBox() {
-    cssBox.textContent = cssString
-}
 
-function setBackgroundColor(color) {
-
-    body.style.backgroundColor = color
-    hexColor = color
-
-}
 
 
 function setElementProperties() {
@@ -86,7 +78,7 @@ function setElementProperties() {
 
     // All units
     elementObj.styles.unitsFont = document.getElementById("unitsFont").value;
-    elementObj.styles.unitsHight = document.getElementById("unitsHight").value;
+    elementObj.styles.unitsHeight = document.getElementById("unitsHeight").value;
     elementObj.styles.unitsWidth = document.getElementById("unitsWidth").value;
     elementObj.styles.unitsMargin = document.getElementById("unitsMargin").value;
     elementObj.styles.unitsPadding = document.getElementById("unitsPadding").value;
@@ -95,11 +87,13 @@ function setElementProperties() {
 
 
     // Font settings
-    elementObj.styles.fontSize = document.getElementById("fontSize").value;
-    elementObj.styles.fontFamily = document.getElementById("fontFamily").value;
-    elementObj.styles.fontWeight = document.getElementById("fontWeight").value;
-    elementObj.styles.fontStyle = document.getElementById("fontStyle").value;
-    elementObj.styles.lineHeight = document.getElementById("lineHeight").value;
+    elementObj.styles.font_size = document.getElementById("font-size").value;
+    elementObj.styles.font_family = document.getElementById("font-family").value;
+    elementObj.styles.font_weight = document.getElementById("font-weight").value;
+    elementObj.styles.font_style = document.getElementById("font-style").value;
+    elementObj.styles.line_height = document.getElementById("line-height").value;
+    elementObj.styles.text_align = document.getElementById("text-align").value;
+
 
     // Sub Element
     let subElementCheckbox = document.getElementById("subElement");
@@ -107,10 +101,10 @@ function setElementProperties() {
 
     // Style of element
     elementObj.styles.width = document.getElementById("width").value;
-    elementObj.styles.height = document.getElementById("hight").value;
+    elementObj.styles.height = document.getElementById("height").value;
     elementObj.styles.margin = document.getElementById("margin").value;
     elementObj.styles.padding = document.getElementById("padding").value;
-    elementObj.styles.backgroundColor = document.getElementById("backgroundColor").value;
+    elementObj.styles.background_color = document.getElementById("background-color").value;
     elementObj.styles.color = document.getElementById("color").value;
 
     // Border settings
@@ -127,42 +121,41 @@ function setElementProperties() {
 
     let allCssBoxStringCombinedArry = []
 
-    const cssStylesToCheck = ["fontSize", "fontFamily", "fontWeight", "fontStyle", "lineHeight", "width", "height", "margin", "padding", "backgroundColor", "color", "border", "shadow"]
+    const cssStylesToCheck = ["font_size", "font_family", "font_weight", "font_style", "line_height", "width", "height", "margin", "padding", "background_color", "color", "border", "shadow","text_align"]
     cssStylesToCheck.forEach(value => {
+        let modifiedValue = value.replace(/([_])/g, '-');
         if (elementObj.styles[value]) {
-            if ("fontSize") {
-                allCssBoxStringCombinedArry.push(`${value}: ${elementObj.styles[value]} ${elementObj.styles.unitsFont}
-            `)
+            if (value === "font_size") {
+                console.log("Problem with _:",value , modifiedValue);
+                allCssBoxStringCombinedArry.push(`${modifiedValue}: ${elementObj.styles[value]}${elementObj.styles.unitsFont};\n`);
             }
-            if ("width") {
-                allCssBoxStringCombinedArry.push(`${value}: ${elementObj.styles[value]} ${elementObj.styles.unitsWidth}
-            `)
+            if (value === "width") {
+                allCssBoxStringCombinedArry.push(`${modifiedValue}: ${elementObj.styles[value]}${elementObj.styles.unitsWidth};\n`);
             }
-            if ("height") {
-                allCssBoxStringCombinedArry.push(`${value}: ${elementObj.styles[value]} ${elementObj.styles.unitsHeight}
-            `)
+            if (value === "height") {
+                allCssBoxStringCombinedArry.push(`${modifiedValue}: ${elementObj.styles[value]}${elementObj.styles.unitsHeight};\n`);
             }
-            if ("margin") {
-                allCssBoxStringCombinedArry.push(`${value}: ${elementObj.styles[value]} ${elementObj.styles.unitsMargin}
-            `)
+            if (value === "margin") {
+                allCssBoxStringCombinedArry.push(`${modifiedValue}: ${elementObj.styles[value]}${elementObj.styles.unitsMargin};\n`);
             }
-            if ("padding") {
-                allCssBoxStringCombinedArry.push(`${value}: ${elementObj.styles[value]} ${elementObj.styles.unitsPadding}
-            `)
+            if (value === "padding") {
+                allCssBoxStringCombinedArry.push(`${modifiedValue}: ${elementObj.styles[value]}${elementObj.styles.unitsPadding};\n`);
             }
-            if ("border") {
-                allCssBoxStringCombinedArry.push(`${value}: ${elementObj.styles[value]} ${elementObj.styles.unitsBorder}
-            `)
+            if (value === "border" && /^\d$/.test(elementObj.styles.border.charAt(0))) {
+                allCssBoxStringCombinedArry.push(`${modifiedValue}: ${elementObj.styles[value]};\n`);
             }
-                
-                allCssBoxStringCombinedArry.push(`${value}: "${elementObj.styles[value]}"
-            `)
+            if (value != "font_size" && value != "width" && value != "height" && value != "margin" && value != "padding" && value != "border")
+                allCssBoxStringCombinedArry.push(`${modifiedValue}: ${elementObj.styles[value]};\n`)
         }
 
         
     })
-    console.log('==================================================================',allCssBoxStringCombinedArry);
-
+   
+    let allCssBoxStringCombinedAsString = allCssBoxStringCombinedArry.join(' ');
+    elementObj.css = `${cssSelectorType}{
+    ${allCssBoxStringCombinedAsString}
+    }`;
+    console.log(elementObj.css);
     
     
     
@@ -177,13 +170,13 @@ function setElementProperties() {
 //==============htmlBox string create part========================================================
     let propertyArray = [];
     if (elementObj.id) {
-        propertyArray.push(`id="${elementObj.id}"`);
+        propertyArray.push(` id="${elementObj.id}"`);
     }
     if (elementObj.class) {
-        propertyArray.push(`class="${elementObj.class}"`);
+        propertyArray.push(` class="${elementObj.class}"`);
     }
     let elPropertys = propertyArray.join(' ');
-    elementObj.html = `<${elementObj.type} ${elPropertys}></${elementObj.type}>`;
+    elementObj.html = `<${elementObj.type}${elPropertys}>${elementObj.innerText}</${elementObj.type}>`;
     console.log("from setElementProperties", allElementsArry);
 
 //===============================================================================================
@@ -200,13 +193,13 @@ function setElementProperties() {
 
 
 function cssBoxSelectorValidation() {
-    let cssSelectorType = ""
+    let cssSelectorType = `${elementObj.type}`
     if (elementObj.class) {
-        cssSelectorType = "."
+        cssSelectorType = `.${elementObj.class}`
         
     }
     if (!elementObj.class && elementObj.id) {
-        cssSelectorType = "#"
+        cssSelectorType = `.${elementObj.id}`
     }
 
     return cssSelectorType
@@ -225,10 +218,27 @@ function addElement(obj) {
     if (obj.class) {
         el.classList.add(obj.class);
     }
+    el.innerText = obj.innerText
+    el.style.fontSize = obj.styles.font_size + obj.styles.unitsFont
+    el.style.fontFamily = obj.styles.font_family
+    el.style.fontWeight = obj.styles.font_weight
+    el.style.fontStyle = obj.styles.font_style
+    el.style.lineHeight = obj.styles.line_height
+    el.style.textAlign = obj.styles.text_align 
+    el.style.width = obj.styles.width + obj.styles.unitsWidth
+    console.log("width of addelement func",el.width);
+    el.style.height = obj.styles.height + obj.styles.unitsHeight
+    el.style.margin = obj.styles.margin + obj.styles.unitsMargin
+    el.style.padding = obj.styles.padding + obj.styles.unitsPadding
+    el.style.backgroundColor = obj.styles.background_color;
+    el.style.color = obj.styles.color;
+    el.style.border = obj.styles.border;
+    el.style.position = "relative";
+    el.addEventListener('click', function () {
+        console.log("test");
+        //handleClick(el);
+    });
     
-    
-    el.style.backgroundColor = 'lightblue';
-    el.style.padding = '10px';
     body.appendChild(el)
 
 }
@@ -248,6 +258,24 @@ function renderHtmlCopyBox(obj) {
 }
 
 
+function renderCssBoxCopyBox() {
+    cssBox.value = ""
+    for (let i = 0; i < allElementsArry.length; i++) {
+        cssBox.value += allElementsArry[i].css;
+
+        
+
+    }
+}
+
+function setBackgroundColor(color) {
+
+    body.style.backgroundColor = color
+    hexColor = color
+
+}
+
+
 function handleFormSubmit(event) {
     event.preventDefault(); // Prevents the default form submission behavior
     console.log('Form submitted!');
@@ -259,6 +287,6 @@ export {
     handleFormSubmit,
     setBackgroundColor,
     updateCssString,
-    renderCssBox,
+    renderCssBoxCopyBox,
     setElementProperties,
 }
