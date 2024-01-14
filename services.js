@@ -16,16 +16,16 @@ const elementObj = {
             unitsMargin: undefined,
             unitsPadding: undefined
         },
-        font_size: undefined, 
+        font_size: undefined,
         font_family: undefined,
         font_weight: undefined,
         font_style: undefined,
         line_height: undefined,
         text_align: undefined,
-        width: undefined, 
-        height: undefined, 
-        margin: undefined, 
-        padding: undefined, 
+        width: undefined,
+        height: undefined,
+        margin: undefined,
+        padding: undefined,
         background_color: undefined,
         color: undefined,
         border: undefined,
@@ -79,6 +79,11 @@ function setElementProperties() {
     type.value = type.value || "div"
     elementObj.type = type.value
     elementObj.id = id.value
+    if (!isValidId(elementObj.id)) {
+
+        console.log("error");
+
+    }
     elementObj.class = className.value
 
 
@@ -136,7 +141,7 @@ function setElementProperties() {
         let modifiedValue = value.replace(/([_])/g, '-');
         if (elementObj.styles[value]) {
             if (value === "font_size") {
-                console.log("Problem with _:",value , modifiedValue);
+                console.log("Problem with _:", value, modifiedValue);
                 allCssBoxStringCombinedArry.push(`${modifiedValue}: ${elementObj.styles[value]}${elementObj.styles.units.unitsFont};\n`);
             }
             if (value === "width") {
@@ -158,18 +163,15 @@ function setElementProperties() {
                 allCssBoxStringCombinedArry.push(`${modifiedValue}: ${elementObj.styles[value]};\n`)
         }
 
-        
+
     })
-   
-let allCssBoxStringCombinedAsString = allCssBoxStringCombinedArry.join(' ');
-elementObj.css = `${cssSelectorType} {
+
+    let allCssBoxStringCombinedAsString = allCssBoxStringCombinedArry.join(' ');
+    elementObj.css = `${cssSelectorType} {
 ${allCssBoxStringCombinedAsString}
 }
 `;
     console.log(elementObj.css);
-    
-    
-    
 
 
 
@@ -177,8 +179,11 @@ ${allCssBoxStringCombinedAsString}
 
 
 
-//================================================================================================
-//==============htmlBox string create part========================================================
+
+
+
+    //================================================================================================
+    //==============htmlBox string create part========================================================
     let propertyArray = [];
     if (elementObj.id) {
         propertyArray.push(` id="${elementObj.id}"`);
@@ -190,7 +195,7 @@ ${allCssBoxStringCombinedAsString}
     elementObj.html = `<${elementObj.type}${elPropertys}>${elementObj.innerText}</${elementObj.type}>`;
     console.log("from setElementProperties", allElementsArry);
 
-//===============================================================================================
+    //===============================================================================================
 
 
     allElementsArry.push({ ...elementObj })
@@ -207,14 +212,14 @@ function cssBoxSelectorValidation() {
     let cssSelectorType = `${elementObj.type}`
     if (elementObj.class) {
         cssSelectorType = `.${elementObj.class}`
-        
+
     }
     if (!elementObj.class && elementObj.id) {
-        cssSelectorType = `.${elementObj.id}`
+        cssSelectorType = `#${elementObj.id}`
     }
 
     return cssSelectorType
-        
+
 }
 
 
@@ -235,9 +240,9 @@ function addElement(obj) {
     el.style.fontWeight = obj.styles.font_weight
     el.style.fontStyle = obj.styles.font_style
     el.style.lineHeight = obj.styles.line_height
-    el.style.textAlign = obj.styles.text_align 
+    el.style.textAlign = obj.styles.text_align
     el.style.width = obj.styles.width + obj.styles.units.unitsWidth
-    console.log("width of addelement func",el.width);
+    console.log("width of addelement func", el.width);
     el.style.height = obj.styles.height + obj.styles.units.unitsHeight
     el.style.margin = obj.styles.margin + obj.styles.units.unitsMargin
     el.style.padding = obj.styles.padding + obj.styles.units.unitsPadding
@@ -249,7 +254,7 @@ function addElement(obj) {
         console.log("test");
         //handleClick(el);
     });
-    
+
     body.appendChild(el)
 
 }
@@ -274,7 +279,7 @@ function renderCssBoxCopyBox() {
     for (let i = 0; i < allElementsArry.length; i++) {
         cssBox.value += allElementsArry[i].css;
 
-        
+
 
     }
 }
@@ -285,6 +290,17 @@ function setBackgroundColor(color) {
     hexColor = color
 
 }
+
+
+function isValidId(id) {
+    return /^[a-zA-Z][a-zA-Z0-9_\-]*$/.test(id);
+}
+
+
+function isValidClassName(className) {
+    return /^[a-zA-Z_][a-zA-Z0-9_\-]*$/.test(className);
+}
+
 
 
 function handleFormSubmit(event) {

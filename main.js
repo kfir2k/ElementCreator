@@ -7,6 +7,15 @@ document.getElementById("inputPage2").addEventListener("click", () => {
     document.getElementById("all-font-settings").style.display = "none"
 
 })
+document.getElementById("inputPage3").addEventListener("click", () => {
+    document.getElementById("all-font-settings").style.display = "none"
+
+})
+
+
+
+
+
 
 
 document.getElementById("startBtn").addEventListener("click", () => {

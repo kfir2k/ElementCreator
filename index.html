@@ -30,7 +30,11 @@
                     <option value="ul">Unordered list</option>
                     <option value="ol">Ordered list</option>
                     <option value="li">List item</option>
-                    <option value="button">button</option>
+                    <option value="table">table</option>
+                    <option value="tr">tr</option>
+                    <option value="td">td</option>
+                    <option value="hr">hr</option>
+                    <option value="br">br</option>
                 </select>
                 <label for="id">Id</label>
                 <input type="text" name="id" id="id">
@@ -109,8 +113,9 @@
                 <div>
                     <input type="checkbox" name="subElement" id="subElement">
                 </div>
-                <h2>Style of element</h2>
+
                 <section id="sizingStyleOfElementContainer">
+                    <h2>Style of element</h2>
                     <label for="width">Width</label>
                     <input type="number" name="width" id="width">
                     <select name="unitsWidth" id="unitsWidth">
@@ -198,8 +203,8 @@
                         </select>
                     </div>
                 </section>
-                <!--<label for="shadow">shadow</label>
-                <input type="text" name="shadow" id="shadow">-->
+                <label for="shadow">shadow</label>
+                <input type="text" name="shadow" id="shadow">
                 <div>
                     <button id="saveBtn">Save</button>
                     <button id="deleteBtn">Delete</button>
