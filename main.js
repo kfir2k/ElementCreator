@@ -44,9 +44,18 @@ document.getElementById("elementProperties").addEventListener("submit", elContro
 function elController(event) {
     event.preventDefault()
     let obj = setElementProperties()
-    addElement(obj)
-    console.log(obj);
-    renderHtmlCopyBox(obj) //string of proprty
-    renderCssBoxCopyBox(obj)
+    console.log("GOT OBJ");
+    if (obj === undefined) {
+
+        console.log("ELCONTROLLER UNDIFIND OBJ");
+
+
+    } else {
+        addElement(obj)
+        renderHtmlCopyBox(obj) //string of proprty
+        renderCssBoxCopyBox(obj)
+    }
+
+
 
 }

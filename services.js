@@ -79,11 +79,15 @@ function setElementProperties() {
     type.value = type.value || "div"
     elementObj.type = type.value
     elementObj.id = id.value
-    if (!isValidId(elementObj.id)) {
+    if (isValidId(elementObj.id)) {
 
-        console.log("error");
+
+
+        return
+
 
     }
+    console.log("after id valdid");
     elementObj.class = className.value
 
 
@@ -252,7 +256,6 @@ function addElement(obj) {
     el.style.position = "relative";
     el.addEventListener('click', function () {
         console.log("test");
-        //handleClick(el);
     });
 
     body.appendChild(el)
@@ -293,7 +296,12 @@ function setBackgroundColor(color) {
 
 
 function isValidId(id) {
-    return /^[a-zA-Z][a-zA-Z0-9_\-]*$/.test(id);
+    const isValidFormat = /^[a-zA-Z][a-zA-Z0-9_\-]*$/.test(id);
+    const isUnique = !allElementsArry.some(element => element.id === id);
+
+    console.log(isValidFormat || isUnique);
+
+    return isValidFormat || isUnique;
 }
 
 
