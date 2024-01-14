@@ -301,6 +301,7 @@ function isValidId(id) {
 
     console.log(isValidFormat || isUnique);
 
+
     return isValidFormat || isUnique;
 }
 
