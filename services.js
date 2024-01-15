@@ -43,16 +43,7 @@ const cssBox = document.getElementById("cssCopyBox")
 const htmlBox = document.getElementById("htmlCopyBox")
 
 export let hexColor = undefined
-
-// let htmlString = `
-// <body>
-// ${elementObj.html}
-// </body>
-// `;
-
-
 let cssString = ""
-
 
 let updateCssString = (colorValue) => {
     let bodyCssBackgroundColorString = `.body {
@@ -61,48 +52,27 @@ let updateCssString = (colorValue) => {
     `;
     let colorBefore = bodyCssBackgroundColorString.slice(34, 35)
     cssString = bodyCssBackgroundColorString.replace(colorBefore, colorValue)
-    console.log("in log");
-    console.log(cssString);
 
 }
 
-
-
-
 function setElementProperties() {
-    elementObj.html = undefined
-    elementObj.css = undefined
-    let type = document.getElementById("type")
-    let id = document.getElementById("id")
-    let className = document.getElementById("class")
-    type.value = type.value || "div"
-    elementObj.type = type.value
-    elementObj.id = id.value
+
+    elementObj.type = document.getElementById("type").value
+    elementObj.id = document.getElementById("id").value
+    elementObj.class = document.getElementById("class").value
     if (!isValidId(elementObj.id)) {
-
-
         return null
-
-
-
     }
-    console.log("after id valdid");
-    elementObj.class = className.value
 
-
-    // Additional properties
     let innerText = document.getElementById("innerText");
     elementObj.innerText = innerText.value;
 
-    // All units
     elementObj.styles.units.unitsFont = document.getElementById("unitsFont").value;
     elementObj.styles.units.unitsHeight = document.getElementById("unitsHeight").value;
     elementObj.styles.units.unitsWidth = document.getElementById("unitsWidth").value;
     elementObj.styles.units.unitsMargin = document.getElementById("unitsMargin").value;
     elementObj.styles.units.unitsPadding = document.getElementById("unitsPadding").value;
     elementObj.styles.units.unitsBorder = document.getElementById("unitsBorder").value;
-
-
 
     // Font settings
     elementObj.styles.font_size = document.getElementById("font-size").value;
@@ -111,7 +81,6 @@ function setElementProperties() {
     elementObj.styles.font_style = document.getElementById("font-style").value;
     elementObj.styles.line_height = document.getElementById("line-height").value;
     elementObj.styles.text_align = document.getElementById("text-align").value;
-
 
     // Sub Element
     let subElementCheckbox = document.getElementById("subElement");
@@ -144,7 +113,6 @@ function setElementProperties() {
         let modifiedValue = value.replace(/([_])/g, '-');
         if (elementObj.styles[value]) {
             if (value === "font_size") {
-                console.log("Problem with _:", value, modifiedValue);
                 allCssBoxStringCombinedArry.push(`${modifiedValue}: ${elementObj.styles[value]}${elementObj.styles.units.unitsFont};\n`);
             }
             if (value === "width") {
@@ -174,7 +142,6 @@ function setElementProperties() {
 ${allCssBoxStringCombinedAsString}
 }
 `;
-    console.log(elementObj.css);
 
 
 
@@ -196,18 +163,11 @@ ${allCssBoxStringCombinedAsString}
     }
     let elPropertys = propertyArray.join(' ');
     elementObj.html = `<${elementObj.type}${elPropertys}>${elementObj.innerText}</${elementObj.type}>`;
-    console.log("from setElementProperties", allElementsArry);
+
 
     //===============================================================================================
-
-
-    allElementsArry.push({ ...elementObj })
-    type.value = "div";
-    id.value = "";
-    className.value = "";
-    innerText.value = "";
-
-    return elementObj
+    allElementsArry.push(JSON.parse(JSON.stringify(elementObj)))
+    return JSON.parse(JSON.stringify(elementObj))
 
 }
 
@@ -246,7 +206,6 @@ function addElement(obj) {
     el.style.lineHeight = obj.styles.line_height
     el.style.textAlign = obj.styles.text_align
     el.style.width = obj.styles.width + obj.styles.units.unitsWidth
-    console.log("width of addelement func", el.width);
     el.style.height = obj.styles.height + obj.styles.units.unitsHeight
     el.style.margin = obj.styles.margin + obj.styles.units.unitsMargin
     el.style.padding = obj.styles.padding + obj.styles.units.unitsPadding
@@ -261,10 +220,12 @@ function addElement(obj) {
 
 
 function ClickedElementInDom() {
+    console.log("Clicked");
+    console.log("arry", allElementsArry);
     const specificIndexOfClickedElement = allElementsArry.findIndex((element) => this.id === element.id)
     const clickedObj = allElementsArry[specificIndexOfClickedElement]
+    
     //TYPES IDS CLASS AND INNER TEXT
-
     document.getElementById("type").value = clickedObj.type;
     document.getElementById("id").value = clickedObj.id;
     document.getElementById("class").value = clickedObj.class;
@@ -293,6 +254,17 @@ function ClickedElementInDom() {
     document.getElementById("background-color").value = clickedObj.styles.background_color
     document.getElementById("color").value = clickedObj.styles.color
     // Border settings
+    const borderValue = clickedObj.styles.border;
+    const [borderSize, borderType, borderColor] = borderValue.split(' ');
+    const sizeWithoutUnits = parseFloat(borderSize);
+    document.getElementById("borderSize").value = sizeWithoutUnits
+    document.getElementById("borderType").value = borderType
+    document.getElementById("borderColor").value = borderColor
+    //shadow
+    document.getElementById("shadow").value = clickedObj.styles.shadow
+
+
+
 
 }
 
@@ -302,7 +274,6 @@ function renderHtmlCopyBox(obj) {
 
 
     htmlBox.textContent = ""
-    console.log(allElementsArry)
     for (let i = 0; i < allElementsArry.length; i++) {
         htmlBox.textContent += allElementsArry[i].html;
 
@@ -361,7 +332,6 @@ function isValidClassName(className) {
 
 function handleFormSubmit(event) {
     event.preventDefault(); // Prevents the default form submission behavior
-    console.log('Form submitted!');
 }
 
 

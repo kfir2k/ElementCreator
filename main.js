@@ -45,7 +45,6 @@ document.getElementById("elementProperties").addEventListener("submit", elContro
 function elController(event) {
     event.preventDefault()
     let obj = setElementProperties()
-    console.log("GOT OBJ at elController");
     if (obj === null) {
 
         const alert = document.getElementById("alert");
@@ -55,12 +54,10 @@ function elController(event) {
         })
 
     } else {
-        console.log("Element object it ok and good for adding it to DOM");
         addElement(obj)
         renderHtmlCopyBox(obj) //string of proprty
         renderCssBoxCopyBox(obj)
     }
-
 
 
 }

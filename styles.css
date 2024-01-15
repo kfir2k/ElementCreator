@@ -166,7 +166,7 @@ textarea {
 
 #all-border-settings {
     background-color: rgb(0, 20, 37);
-    display: none;
+    /*display: none;*/
 }
 
 #all-font-settings {

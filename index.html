@@ -18,7 +18,7 @@
         <div id="left-side">
             <div class="inputContianers">
                 <label for="colorPickerBackground">Change All Page Background Color</label>
-                <input type="color" name="colorPickerBackground" id="colorPickerBackground">
+                <input type="color" name="colorPickerBackground" id="colorPickerBackground" value="#ffffff">
             </div>
             <form id="elementProperties">
                 <label for="type">Type of Element</label>
@@ -165,7 +165,7 @@
                 </section>
                 <div id="allElementColorSettingsContainer">
                     <label for="background-color">Background Color</label>
-                    <input type="color" name="background-color" id="background-color">
+                    <input type="color" name="background-color" id="background-color" value="#ffffff">
                     <label for="color">Color</label>
                     <input type="color" name="color" id="color">
                 </div>
@@ -207,11 +207,12 @@
                 <label for="shadow">shadow</label>
                 <input type="text" name="shadow" id="shadow">
                 <div>
-                    <button id="saveBtn">Save</button>
-
+                    <button type="submit" id="saveBtn">Save</button>
+                    <button type="button" id="updateBtn">Update</button>
+                    <button type="button" id="clearBtn">Clear</button>
                 </div>
             </form>
-            <button id="deleteBtn">Delete</button>
+
 
             <div id="copyBoxsContainer">
                 <div class="display-flex-center-column">
