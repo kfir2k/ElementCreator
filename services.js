@@ -205,6 +205,7 @@ ${allCssBoxStringCombinedAsString}
     type.value = "div";
     id.value = "";
     className.value = "";
+    innerText.value = "";
 
     return elementObj
 
@@ -253,11 +254,44 @@ function addElement(obj) {
     el.style.color = obj.styles.color;
     el.style.border = obj.styles.border;
     el.style.position = "relative";
-    el.addEventListener('click', function () {
-        console.log("test");
-    });
-
+    el.addEventListener('click', ClickedElementInDom);
     body.appendChild(el)
+
+}
+
+
+function ClickedElementInDom() {
+    const specificIndexOfClickedElement = allElementsArry.findIndex((element) => this.id === element.id)
+    const clickedObj = allElementsArry[specificIndexOfClickedElement]
+    //TYPES IDS CLASS AND INNER TEXT
+    document.getElementById("type").value = clickedObj.type;
+    document.getElementById("id").value = clickedObj.id;
+    document.getElementById("class").value = clickedObj.class;
+    document.getElementById("innerText").value = clickedObj.innerText;
+    // All units
+    document.getElementById("unitsFont").value = clickedObj.styles.units.unitsFont
+    document.getElementById("unitsHeight").value = clickedObj.styles.units.unitsHeight
+    document.getElementById("unitsWidth").value = clickedObj.styles.units.unitsWidth
+    document.getElementById("unitsMargin").value = clickedObj.styles.units.unitsMargin
+    document.getElementById("unitsPadding").value = clickedObj.styles.units.unitsPadding
+    document.getElementById("unitsBorder").value = clickedObj.styles.units.unitsBorder
+    //Font
+    document.getElementById("font-size").value = clickedObj.styles.font_size
+    document.getElementById("font-family").value = clickedObj.styles.font_family
+    document.getElementById("font-weight").value = clickedObj.styles.font_weight
+    document.getElementById("font-style").value = clickedObj.styles.font_style
+    document.getElementById("line-height").value = clickedObj.styles.line_height
+    document.getElementById("text-align").value = clickedObj.styles.text_align
+    //Sub Element
+    document.getElementById("subElement").value = clickedObj.subElement
+    // Style of element
+    document.getElementById("width").value = clickedObj.styles.width
+    document.getElementById("height").value = clickedObj.styles.height
+    document.getElementById("margin").value = clickedObj.styles.margin
+    document.getElementById("padding").value = clickedObj.styles.padding
+    document.getElementById("background-color").value = clickedObj.styles.background_color
+    document.getElementById("color").value = clickedObj.styles.color
+    // Border settings
 
 }
 
@@ -296,7 +330,16 @@ function setBackgroundColor(color) {
 
 function isValidId(id) {
     const isValidFormat = /^[a-zA-Z][a-zA-Z0-9_\-]*$|^$/.test(id); //false
-    const isUnique = allElementsArry.some(element => element.id === id); //true
+    const isUnique = allElementsArry.some(element => {
+        if (element.id === id) {
+            if (element.id != "") {
+                return true
+            }
+            return false
+        }
+
+
+    }); //true
 
 
     if (isValidFormat === false || isUnique === true) {
