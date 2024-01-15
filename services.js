@@ -264,6 +264,7 @@ function ClickedElementInDom() {
     const specificIndexOfClickedElement = allElementsArry.findIndex((element) => this.id === element.id)
     const clickedObj = allElementsArry[specificIndexOfClickedElement]
     //TYPES IDS CLASS AND INNER TEXT
+
     document.getElementById("type").value = clickedObj.type;
     document.getElementById("id").value = clickedObj.id;
     document.getElementById("class").value = clickedObj.class;
