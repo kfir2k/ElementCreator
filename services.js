@@ -44,26 +44,25 @@ const htmlBox = document.getElementById("htmlCopyBox")
 
 export let hexColor = undefined
 
-let htmlString = `
-<body>
-${elementObj.html}
-</body>
-`;
+// let htmlString = `
+// <body>
+// ${elementObj.html}
+// </body>
+// `;
 
 
-let cssString = `.body {
-    background-color: $;
-}`;
+let cssString = ""
 
 
 let updateCssString = (colorValue) => {
-    let colorBefore = cssString.slice(30, 31)
-    if (colorBefore === "$") {
-        cssString = cssString.replace(colorBefore, colorValue)
-    } else {
-        colorBefore = cssString.slice(30, 37)
-        cssString = cssString.replace(colorBefore, colorValue)
-    }
+    let bodyCssBackgroundColorString = `.body {
+        background-color: $;
+}
+    `;
+    let colorBefore = bodyCssBackgroundColorString.slice(34, 35)
+    cssString = bodyCssBackgroundColorString.replace(colorBefore, colorValue)
+    console.log("in log");
+    console.log(cssString);
 
 }
 
@@ -79,11 +78,11 @@ function setElementProperties() {
     type.value = type.value || "div"
     elementObj.type = type.value
     elementObj.id = id.value
-    if (isValidId(elementObj.id)) {
+    if (!isValidId(elementObj.id)) {
 
 
+        return null
 
-        return
 
 
     }
@@ -203,7 +202,7 @@ ${allCssBoxStringCombinedAsString}
 
 
     allElementsArry.push({ ...elementObj })
-    type.value = "";
+    type.value = "div";
     id.value = "";
     className.value = "";
 
@@ -278,7 +277,7 @@ function renderHtmlCopyBox(obj) {
 
 
 function renderCssBoxCopyBox() {
-    cssBox.value = ""
+    cssBox.value = cssString + "\n"
     for (let i = 0; i < allElementsArry.length; i++) {
         cssBox.value += allElementsArry[i].css;
 
@@ -296,13 +295,17 @@ function setBackgroundColor(color) {
 
 
 function isValidId(id) {
-    const isValidFormat = /^[a-zA-Z][a-zA-Z0-9_\-]*$/.test(id);
-    const isUnique = !allElementsArry.some(element => element.id === id);
-
-    console.log(isValidFormat || isUnique);
+    const isValidFormat = /^[a-zA-Z][a-zA-Z0-9_\-]*$|^$/.test(id); //false
+    const isUnique = allElementsArry.some(element => element.id === id); //true
 
 
-    return isValidFormat || isUnique;
+    if (isValidFormat === false || isUnique === true) {
+        return false
+    } else {
+        return true
+    }
+
+
 }
 
 
@@ -317,6 +320,11 @@ function handleFormSubmit(event) {
     console.log('Form submitted!');
 }
 
+
+
+
+
+
 export {
     renderHtmlCopyBox,
     addElement,
@@ -325,4 +333,5 @@ export {
     updateCssString,
     renderCssBoxCopyBox,
     setElementProperties,
+
 }

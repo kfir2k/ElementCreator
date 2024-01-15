@@ -3,6 +3,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
+
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
@@ -51,6 +52,7 @@
 .inputContianers {
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .inputContianers label {
@@ -59,21 +61,23 @@
 
 
 #left-side {
-
     color: white;
     flex: 2;
-    padding: 20px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
 }
 
 #right-side {
-    flex: 5;
+    flex: 7;
     position: relative;
 }
 
 #left-side {
     background-color: #004079;
-    font-size: 0.8em;
+    font-size: 0.75em;
 }
 
 #left-side p {
@@ -88,10 +92,10 @@
 
 }
 
-#left-side #elementProperties {
+/* #left-side #elementProperties {
     display: flex;
     flex-direction: column;
-}
+} */
 
 #right-side {
     display: flex;
@@ -136,6 +140,22 @@
 
 }
 
+#left-side input[type="number"],
+input[type="text"],
+select,
+textarea {
+    min-width: none;
+    margin: 5px 0;
+    width: 100%;
+    /* height: 20px; */
+
+}
+
+#left-side #sizingStyleOfElementContainer select {
+    width: 60px;
+}
+
+
 #left-side #cssCopyBox,
 #htmlCopyBox {
 
@@ -156,13 +176,21 @@
 }
 
 #copyBoxsContainer {
-    margin-top: 30px;
+    margin-top: 10px;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+
+#copyBoxsContainer textarea {
+    height: 100%;
+    font-size: 10px;
+
+
 }
 
 #allElementColorSettingsContainer {
-    margin: 20px 20px 0 20px;
+    margin: 10px 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -185,10 +213,40 @@
 
 
 #switchMenuBtns {
+
+    align-self: center;
     margin-top: 30px;
     display: flex;
     justify-content: center;
     gap: 30px;
+}
+
+
+
+
+
+#WidthAndHeightContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* gap: 10px; */
+    /* gap: 20px; */
+}
+
+
+#marginAndPaddingContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* gap: 10px; */
+}
+
+
+
+
+
+.hidden {
+    display: none;
 }
 
 
@@ -204,6 +262,29 @@
 
 
 
-.hidden {
+
+
+#alert {
+    padding: 20px;
+    background-color: #f44336;
+    color: white;
+    position: fixed;
+    bottom: 0;
+    width: 100dvw;
     display: none;
+}
+
+#closebtn {
+    margin-right: 20px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.closebtn:hover {
+    color: black;
 }

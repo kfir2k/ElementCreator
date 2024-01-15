@@ -17,7 +17,7 @@
     <main id="main" class="container hidden">
         <div id="left-side">
             <div class="inputContianers">
-                <label for="colorPickerBackground">Change Background Color</label>
+                <label for="colorPickerBackground">Change All Page Background Color</label>
                 <input type="color" name="colorPickerBackground" id="colorPickerBackground">
             </div>
             <form id="elementProperties">
@@ -116,51 +116,52 @@
 
                 <section id="sizingStyleOfElementContainer">
                     <h2>Style of element</h2>
-                    <label for="width">Width</label>
-                    <input type="number" name="width" id="width">
-                    <select name="unitsWidth" id="unitsWidth">
-                        <option value="px">PX</option>
-                        <option value="em">EM</option>
-                        <option value="rem">REM</option>
-                        <option value="vh">VH</option>
-                        <option value="vw">VW</option>
-                        <option value="%">%</option>
-                        <option value="pt">PT</option>
-                    </select>
-                    <label for="height">Height</label>
-                    <input type="number" name="height" id="height">
-                    <select name="unitsHeight" id="unitsHeight">
-                        <option value="px">PX</option>
-                        <option value="em">EM</option>
-                        <option value="rem">REM</option>
-                        <option value="vh">VH</option>
-                        <option value="vw">VW</option>
-                        <option value="%">%</option>
-                        <option value="pt">PT</option>
-                    </select>
-                    <label for="margin">Margin</label>
-                    <input type="number" name="margin" id="margin">
-                    <select name="unitsMargin" id="unitsMargin">
-                        <option value="px">PX</option>
-                        <option value="em">EM</option>
-                        <option value="rem">REM</option>
-                        <option value="vh">VH</option>
-                        <option value="vw">VW</option>
-                        <option value="%">%</option>
-                        <option value="pt">PT</option>
-                    </select>
-                    <label for="padding">Padding</label>
-                    <input type="number" name="padding" id="padding">
+                    <div id="WidthAndHeightContainer">
+                        <input type="number" name="width" id="width" placeholder="Width">
+                        <select name="unitsWidth" id="unitsWidth">
+                            <option value="px">PX</option>
+                            <option value="em">EM</option>
+                            <option value="rem">REM</option>
+                            <option value="vh">VH</option>
+                            <option value="vw">VW</option>
+                            <option value="%">%</option>
+                            <option value="pt">PT</option>
+                        </select>
+                        <input type="number" name="height" id="height" placeholder="Height">
+                        <select name="unitsHeight" id="unitsHeight">
+                            <option value="px">PX</option>
+                            <option value="em">EM</option>
+                            <option value="rem">REM</option>
+                            <option value="vh">VH</option>
+                            <option value="vw">VW</option>
+                            <option value="%">%</option>
+                            <option value="pt">PT</option>
+                        </select>
+                    </div>
+                    <div id="marginAndPaddingContainer">
+                        <input type="number" name="margin" id="margin" placeholder="Margin">
+                        <select name="unitsMargin" id="unitsMargin">
+                            <option value="px">PX</option>
+                            <option value="em">EM</option>
+                            <option value="rem">REM</option>
+                            <option value="vh">VH</option>
+                            <option value="vw">VW</option>
+                            <option value="%">%</option>
+                            <option value="pt">PT</option>
+                        </select>
 
-                    <select name="unitsPadding" id="unitsPadding">
-                        <option value="px">PX</option>
-                        <option value="em">EM</option>
-                        <option value="rem">REM</option>
-                        <option value="vh">VH</option>
-                        <option value="vw">VW</option>
-                        <option value="%">%</option>
-                        <option value="pt">PT</option>
-                    </select>
+                        <input type="number" name="padding" id="padding" placeholder="Padding">
+
+                        <select name="unitsPadding" id="unitsPadding">
+                            <option value="px">PX</option>
+                            <option value="em">EM</option>
+                            <option value="rem">REM</option>
+                            <option value="vh">VH</option>
+                            <option value="vw">VW</option>
+                            <option value="%">%</option>
+                            <option value="pt">PT</option>
+                        </select>
+                    </div>
                 </section>
                 <div id="allElementColorSettingsContainer">
                     <label for="background-color">Background Color</label>
@@ -213,11 +214,11 @@
 
             <div id="copyBoxsContainer">
                 <div class="display-flex-center-column">
-                    <label for="cssCopyBox">CSS COPY</label>
+                    <label for="cssCopyBox">CSS COPY <img id="copyToClipboardCss" src="copy.svg"></a></label>
                     <textarea readonly name="cssCopyBox" id="cssCopyBox"></textarea>
                 </div>
                 <div class="display-flex-center-column">
-                    <label for="cssCopyBox">HTML COPY</label>
+                    <label for="cssCopyBox">HTML COPY <img id="copyToClipboardHtml" src="copy.svg"></label>
                     <textarea readonly name="htmlCopyBox" id="htmlCopyBox"></textarea>
                 </div>
             </div>
@@ -239,6 +240,13 @@
             <div id="elementsPage"></div>
         </div>
     </main>
+
+
+    <div id="alert">
+        <span id="closebtn">&times;</span>
+        <strong>Type Error</strong> The Element ID or Class is invalid.
+    </div>
+
 </body>
 
 </html>

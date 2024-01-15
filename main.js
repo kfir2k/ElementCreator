@@ -30,7 +30,6 @@ document.getElementById("colorPickerBackground").addEventListener("input", contr
 
 function controller() {
     let colorValue = document.getElementById("colorPickerBackground").value;
-    console.log(colorValue);
     setBackgroundColor(colorValue)
     updateCssString(colorValue)
     renderCssBoxCopyBox()
@@ -39,18 +38,24 @@ function controller() {
 
 }
 
+
+
 document.getElementById("elementProperties").addEventListener("submit", elController)
 
 function elController(event) {
     event.preventDefault()
     let obj = setElementProperties()
-    console.log("GOT OBJ");
-    if (obj === undefined) {
+    console.log("GOT OBJ at elController");
+    if (obj === null) {
 
-        console.log("ELCONTROLLER UNDIFIND OBJ");
-
+        const alert = document.getElementById("alert");
+        alert.style.display = "block";
+        document.getElementById("closebtn").addEventListener("click", () => {
+            alert.style.display = "none";
+        })
 
     } else {
+        console.log("Element object it ok and good for adding it to DOM");
         addElement(obj)
         renderHtmlCopyBox(obj) //string of proprty
         renderCssBoxCopyBox(obj)
