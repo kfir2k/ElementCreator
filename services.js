@@ -100,6 +100,12 @@ function setElementProperties() {
     // Shadow
     elementObj.styles.shadow = document.getElementById("shadow").value;
 
+    const currentDateAndTime = new Date();
+    const formattedDate = `${currentDateAndTime.getFullYear()}-${(currentDateAndTime.getMonth() + 1).toString().padStart(2, '0')}-${currentDateAndTime.getDate().toString().padStart(2, '0')} ${currentDateAndTime.getHours().toString().padStart(2, '0')}:${currentDateAndTime.getMinutes().toString().padStart(2, '0')}:${currentDateAndTime.getSeconds().toString().padStart(2, '0')}`;
+    console.log(formattedDate);
+
+
+    elementObj.date = formattedDate
 
     const cssSelectorType = cssBoxSelectorValidation()
 
@@ -256,8 +262,14 @@ function ClickedElementInDom() {
     // Border settings
     const borderValue = clickedObj.styles.border;
     const [borderSize, borderType, borderColor] = borderValue.split(' ');
-    const sizeWithoutUnits = parseFloat(borderSize);
-    document.getElementById("borderSize").value = sizeWithoutUnits
+    console.log(borderSize);
+    if (borderSize && !isNaN(parseFloat(borderSize))) {
+        const sizeWithoutUnits = parseFloat(borderSize);
+        document.getElementById("borderSize").value = sizeWithoutUnits
+    } else {
+        document.getElementById("borderSize").value = ""
+    }
+    
     document.getElementById("borderType").value = borderType
     document.getElementById("borderColor").value = borderColor
     //shadow

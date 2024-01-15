@@ -16,32 +16,38 @@
     </div>
     <main id="main" class="container hidden">
         <div id="left-side">
-            <div class="inputContianers">
+            <div id="inputContianers">
                 <label for="colorPickerBackground">Change All Page Background Color</label>
                 <input type="color" name="colorPickerBackground" id="colorPickerBackground" value="#ffffff">
             </div>
             <form id="elementProperties">
-                <label for="type">Type of Element</label>
-                <select type="text" name="type" id="type">
-                    <option value="div">Div</option>
-                    <option value="header">Header</option>
-                    <option value="main">Main</option>
-                    <option value="button">Button</option>
-                    <option value="ul">Unordered list</option>
-                    <option value="ol">Ordered list</option>
-                    <option value="li">List item</option>
-                    <option value="table">table</option>
-                    <option value="tr">tr</option>
-                    <option value="td">td</option>
-                    <option value="hr">hr</option>
-                    <option value="br">br</option>
-                </select>
-                <label for="id">Id</label>
-                <input type="text" name="id" id="id">
-                <label for="class">Class</label>
-                <input type="text" name="class" id="class">
-                <label for="innerText">Inner Text</label>
-                <input type="text" name="innerText" id="innerText">
+                <section id="TypeOfElement">
+                    <label for="type">Type of Element</label>
+                    <select type="text" name="type" id="type">
+                        <option value="div">Div</option>
+                        <option value="header">Header</option>
+                        <option value="main">Main</option>
+                        <option value="button">Button</option>
+                        <option value="ul">Unordered list</option>
+                        <option value="ol">Ordered list</option>
+                        <option value="li">List item</option>
+                        <option value="table">table</option>
+                        <option value="tr">tr</option>
+                        <option value="td">td</option>
+                        <option value="hr">hr</option>
+                        <option value="br">br</option>
+                    </select>
+                    <label for="id">Id</label>
+                    <input type="text" name="id" id="id">
+                    <label for="class">Class</label>
+                    <input type="text" name="class" id="class">
+                    <label for="innerText">Inner Text</label>
+                    <input type="text" name="innerText" id="innerText">
+                    <label for="subElement">Sub Element?</label>
+                    <div>
+                        <input type="checkbox" name="subElement" id="subElement">
+                    </div>
+                </section>
                 <section id="all-font-settings">
                     <h2>Font settings</h2>
                     <div>
@@ -109,11 +115,6 @@
                         </select>
                     </div>
                 </section>
-                <label for="subElement">Sub Element?</label>
-                <div>
-                    <input type="checkbox" name="subElement" id="subElement">
-                </div>
-
                 <section id="sizingStyleOfElementContainer">
                     <h2>Style of element</h2>
                     <div id="WidthAndHeightContainer">
@@ -149,9 +150,7 @@
                             <option value="%">%</option>
                             <option value="pt">PT</option>
                         </select>
-
                         <input type="number" name="padding" id="padding" placeholder="Padding">
-
                         <select name="unitsPadding" id="unitsPadding">
                             <option value="px">PX</option>
                             <option value="em">EM</option>
@@ -169,8 +168,6 @@
                     <label for="color">Color</label>
                     <input type="color" name="color" id="color">
                 </div>
-
-
                 <section id="all-border-settings">
                     <h2>Border settings</h2>
                     <div>
@@ -212,8 +209,6 @@
                     <button type="button" id="clearBtn">Clear</button>
                 </div>
             </form>
-
-
             <div id="copyBoxsContainer">
                 <div class="display-flex-center-column">
                     <label for="cssCopyBox">CSS COPY <img id="copyToClipboardCss" src="copy.svg"></a></label>
@@ -224,31 +219,20 @@
                     <textarea readonly name="htmlCopyBox" id="htmlCopyBox"></textarea>
                 </div>
             </div>
-
             <div id="switchMenuBtns">
                 <button id="inputPage1">1</button>
                 <button id="inputPage2">2</button>
                 <button id="inputPage3">3</button>
             </div>
-
-
-
-
-
-
         </div>
-
         <div id="right-side">
             <div id="elementsPage"></div>
         </div>
     </main>
-
-
     <div id="alert">
         <span id="closebtn">&times;</span>
         <strong>Type Error</strong> The Element ID or Class is invalid.
     </div>
-
 </body>
 
 </html>
