@@ -1,6 +1,7 @@
 const allElementsArry = []
 
 const elementObj = {
+    indexForClicks: undefined,
     id: undefined,
     class: undefined,
     innerText: undefined,
@@ -56,7 +57,7 @@ let updateCssString = (colorValue) => {
 }
 
 function setElementProperties() {
-
+    elementObj.indexForClicks = allElementsArry.length + 1
     elementObj.type = document.getElementById("type").value
     elementObj.id = document.getElementById("id").value
     elementObj.class = document.getElementById("class").value
@@ -66,6 +67,7 @@ function setElementProperties() {
 
     let innerText = document.getElementById("innerText");
     elementObj.innerText = innerText.value;
+
 
     elementObj.styles.units.unitsFont = document.getElementById("unitsFont").value;
     elementObj.styles.units.unitsHeight = document.getElementById("unitsHeight").value;
@@ -102,7 +104,6 @@ function setElementProperties() {
 
     const currentDateAndTime = new Date();
     const formattedDate = `${currentDateAndTime.getFullYear()}-${(currentDateAndTime.getMonth() + 1).toString().padStart(2, '0')}-${currentDateAndTime.getDate().toString().padStart(2, '0')} ${currentDateAndTime.getHours().toString().padStart(2, '0')}:${currentDateAndTime.getMinutes().toString().padStart(2, '0')}:${currentDateAndTime.getSeconds().toString().padStart(2, '0')}`;
-    console.log(formattedDate);
 
 
     elementObj.date = formattedDate
@@ -219,18 +220,25 @@ function addElement(obj) {
     el.style.color = obj.styles.color;
     el.style.border = obj.styles.border;
     el.style.position = "relative";
-    el.addEventListener('click', ClickedElementInDom);
+    el.addEventListener('click', ClickedElementInDom.bind(obj));
     body.appendChild(el)
 
 }
 
+let correntClickedElementIndex = 0
 
 function ClickedElementInDom() {
     console.log("Clicked");
     console.log("arry", allElementsArry);
-    const specificIndexOfClickedElement = allElementsArry.findIndex((element) => this.id === element.id)
+    console.log(this.indexForClicks);
+    console.log(this);
+
+
+    const specificIndexOfClickedElement = allElementsArry.findIndex((element) => this.indexForClicks === element.indexForClicks)
+    console.log("specificIndexOfClickedElement", specificIndexOfClickedElement);
+
     const clickedObj = allElementsArry[specificIndexOfClickedElement]
-    
+
     //TYPES IDS CLASS AND INNER TEXT
     document.getElementById("type").value = clickedObj.type;
     document.getElementById("id").value = clickedObj.id;
@@ -269,20 +277,20 @@ function ClickedElementInDom() {
     } else {
         document.getElementById("borderSize").value = ""
     }
-    
+
     document.getElementById("borderType").value = borderType
     document.getElementById("borderColor").value = borderColor
     //shadow
     document.getElementById("shadow").value = clickedObj.styles.shadow
 
-
+    correntClickedElementIndex = specificIndexOfClickedElement
 
 
 }
 
 
 
-function renderHtmlCopyBox(obj) {
+function renderHtmlCopyBox() {
 
 
     htmlBox.textContent = ""
@@ -351,6 +359,48 @@ function handleFormSubmit(event) {
 
 
 
+
+
+
+
+
+
+function deleteSpecificElement() {
+    console.log("allElementsArry", allElementsArry);
+    if (correntClickedElementIndex != 0) {
+        console.log("delete");
+        allElementsArry.splice(correntClickedElementIndex + 1, 1)
+        renderHtmlCopyBox()
+        renderHtmlCopyBox()
+    } else {
+        console.log("correntClickedElementIndex didnt clicked on an element", correntClickedElementIndex);
+    }
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 export {
     renderHtmlCopyBox,
     addElement,
@@ -359,5 +409,6 @@ export {
     updateCssString,
     renderCssBoxCopyBox,
     setElementProperties,
+    deleteSpecificElement,
 
 }

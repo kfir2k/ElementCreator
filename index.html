@@ -169,7 +169,7 @@
                     <input type="color" name="color" id="color">
                 </div>
                 <section id="all-border-settings">
-                    <h2>Border settings</h2>
+                    <h2>Border & Shadow settings</h2>
                     <div>
                         <label for="borderSize">Size</label>
                         <input type="number" name="borderSize" id="borderSize">
@@ -200,13 +200,15 @@
                             <option value="outset">Outset</option>
                         </select>
                     </div>
+                    <label for="shadow">shadow</label>
+                    <input type="text" name="shadow" id="shadow">
                 </section>
-                <label for="shadow">shadow</label>
-                <input type="text" name="shadow" id="shadow">
+
                 <div>
                     <button type="submit" id="saveBtn">Save</button>
                     <button type="button" id="updateBtn">Update</button>
-                    <button type="button" id="clearBtn">Clear</button>
+                    <button type="button" id="deleteBtn">Delete</button>
+                    <button type="button" id="clearAllBtn">Clear all</button>
                 </div>
             </form>
             <div id="copyBoxsContainer">

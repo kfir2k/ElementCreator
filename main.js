@@ -1,4 +1,4 @@
-import { renderHtmlCopyBox, addElement, setElementProperties, updateCssString, renderCssBoxCopyBox, setBackgroundColor } from "./services.js"
+import { deleteSpecificElement, renderHtmlCopyBox, addElement, setElementProperties, updateCssString, renderCssBoxCopyBox, setBackgroundColor } from "./services.js"
 
 document.getElementById("inputPage1").addEventListener("click", () => {
     document.getElementById("all-border-settings").style.display = "none"
@@ -14,8 +14,8 @@ document.getElementById("inputPage2").addEventListener("click", () => {
     document.getElementById("TypeOfElement").style.display = "none"
     document.getElementById("all-border-settings").style.display = "block"
     document.getElementById("all-font-settings").style.display = "block"
-    
-    
+
+
 
 
 })
@@ -67,9 +67,12 @@ function elController(event) {
 
     } else {
         addElement(obj)
-        renderHtmlCopyBox(obj) //string of proprty
-        renderCssBoxCopyBox(obj)
+        renderHtmlCopyBox() //string of proprty
+        renderCssBoxCopyBox()
     }
 
 
 }
+
+
+document.getElementById("deleteBtn").addEventListener("click", deleteSpecificElement)

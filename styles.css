@@ -64,13 +64,11 @@
     flex-direction: column;
     gap: 10px;
     justify-content: space-between;
-
+    overflow: auto;
+    scrollbar-width: thin;
 }
 
-#right-side {
-    flex: 7;
-    position: relative;
-}
+
 
 #left-side {
     background-color: #004079;
@@ -94,6 +92,8 @@
     justify-content: center;
     align-items: center;
     background-color: #e0e0e0;
+    flex: 7;
+    position: relative;
 }
 
 
@@ -127,7 +127,7 @@
 
 
 
-#TypeOfElement{
+#TypeOfElement {
     background-color: red;
 }
 
@@ -176,14 +176,13 @@ textarea {
 #copyBoxsContainer {
     /*margin-top: 10px;*/
     display: flex;
-    
+
 
 }
 
 #copyBoxsContainer textarea {
     height: 200px;
     min-width: 130px
-
 }
 
 
@@ -220,12 +219,11 @@ textarea {
 
 
 #switchMenuBtns {
-    
+
     background-color: #f44336;
-    margin-top: 30px;
     display: flex;
     justify-content: center;
-    
+
     gap: 30px;
 }
 
