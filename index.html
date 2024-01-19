@@ -16,11 +16,23 @@
     </div>
     <main id="main" class="container hidden">
         <div id="left-side">
-            <div id="inputContianers">
-                <label for="colorPickerBackground">Change All Page Background Color</label>
-                <input type="color" name="colorPickerBackground" id="colorPickerBackground" value="#ffffff">
+            <div id="switchMenuBtns">
+                <button id="inputPage1">1</button>
+                <button id="inputPage2">2</button>
+                <button id="inputPage3">3</button>
             </div>
+
             <form id="elementProperties">
+                <div id="actionBtnsContainer">
+                    <button type="submit" id="saveBtn">Save</button>
+                    <button type="button" id="updateBtn">Update</button>
+                    <button type="button" id="deleteBtn">Delete</button>
+                    <button type="button" id="clearAllBtn">Clear all</button>
+                </div>
+                <div id="inputContianers">
+                    <label for="colorPickerBackground">Change All Page Background Color</label>
+                    <input type="color" name="colorPickerBackground" id="colorPickerBackground" value="#ffffff">
+                </div>
                 <section id="TypeOfElement">
                     <label for="type">Type of Element</label>
                     <select type="text" name="type" id="type">
@@ -50,8 +62,9 @@
                 </section>
                 <section id="all-font-settings">
                     <h2>Font settings</h2>
+                    <label for="font-size">Size</label>
                     <div>
-                        <label for="font-size">Size</label>
+
                         <input type="number" name="font-size" id="font-size">
                         <select name="unitsFont" id="unitsFont">
                             <option value="px">PX</option>
@@ -203,29 +216,21 @@
                     <label for="shadow">shadow</label>
                     <input type="text" name="shadow" id="shadow">
                 </section>
-
-                <div>
-                    <button type="submit" id="saveBtn">Save</button>
-                    <button type="button" id="updateBtn">Update</button>
-                    <button type="button" id="deleteBtn">Delete</button>
-                    <button type="button" id="clearAllBtn">Clear all</button>
-                </div>
             </form>
             <div id="copyBoxsContainer">
-                <div class="display-flex-center-column">
-                    <label for="cssCopyBox">CSS COPY <img id="copyToClipboardCss" src="copy.svg"></a></label>
-                    <textarea readonly name="cssCopyBox" id="cssCopyBox"></textarea>
+
+
+                <div id="cssCopyBoxContainer" class="display-flex-center-column">
+                    <label id="copyToClipboardCss">CSS COPY <img src="copy.svg"></label>
+                    <textarea readonly id="cssCopyBox"></textarea>
                 </div>
-                <div class="display-flex-center-column">
-                    <label for="cssCopyBox">HTML COPY <img id="copyToClipboardHtml" src="copy.svg"></label>
-                    <textarea readonly name="htmlCopyBox" id="htmlCopyBox"></textarea>
+
+                <div id="htmlCopyBoxContainer" class="display-flex-center-column">
+                    <label id="copyToClipboardHtml">HTML COPY <img  src="copy.svg"></label>
+                    <textarea readonly id="htmlCopyBox"></textarea>
                 </div>
             </div>
-            <div id="switchMenuBtns">
-                <button id="inputPage1">1</button>
-                <button id="inputPage2">2</button>
-                <button id="inputPage3">3</button>
-            </div>
+
         </div>
         <div id="right-side">
             <div id="elementsPage"></div>
@@ -235,6 +240,11 @@
         <span id="closebtn">&times;</span>
         <strong>Type Error</strong> The Element ID or Class is invalid.
     </div>
+    <div id="alert-success">
+        <span id="closebtn-success">&times;</span>
+        <strong id="alert-success-text">Success!</strong>
+    </div>
+
 </body>
 
 </html>

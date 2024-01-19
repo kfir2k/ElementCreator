@@ -282,7 +282,23 @@ function ClickedElementInDom() {
     document.getElementById("shadow").value = clickedObj.styles.shadow
 
     correntClickedElementIndex = specificIndexOfClickedElement
+    showBtns(true)
 
+
+
+}
+
+
+function showBtns(displayStatus) {
+    if (displayStatus) {
+        document.getElementById("saveBtn").style.display = "none"
+        document.getElementById("updateBtn").style.display = "block"
+        document.getElementById("deleteBtn").style.display = "block"
+    } else {
+        document.getElementById("saveBtn").style.display = "block"
+        document.getElementById("updateBtn").style.display = "none"
+        document.getElementById("deleteBtn").style.display = "none"
+    }
 
 }
 
@@ -373,17 +389,64 @@ function deleteSpecificElement() {
         console.log("delete");
         removeAllChildNodes(body)
         allElementsArry.splice(correntClickedElementIndex, 1)
+        let newIndexForClicks = 0
         let obj = allElementsArry.forEach((element) => {
+            element.indexForClicks = newIndexForClicks
             addElement(element)
+            newIndexForClicks++
         })
 
         renderHtmlCopyBox()
         renderCssBoxCopyBox()
+        correntClickedElementIndex = undefined
+        showBtns(false)
         console.log(allElementsArry);
     } else {
         console.log("correntClickedElementIndex didnt clicked on an element", correntClickedElementIndex);
     }
 
+
+}
+
+function clearAll() {
+
+    removeAllChildNodes(body)
+    allElementsArry.splice(0, allElementsArry.length);
+    renderHtmlCopyBox()
+    renderCssBoxCopyBox()
+    correntClickedElementIndex = undefined
+    showBtns(false)
+    console.log("clearAll", allElementsArry);
+
+}
+
+
+
+function updateSpecificElement() {
+    if (correntClickedElementIndex !== undefined) {
+
+        removeAllChildNodes(body)
+        allElementsArry.splice(correntClickedElementIndex, 1)
+        setElementProperties()
+        let lastObj = allElementsArry.pop()
+        allElementsArry.splice(correntClickedElementIndex, 0, lastObj)
+        let newIndexForClicks = 0
+        let obj = allElementsArry.forEach((element) => {
+            element.indexForClicks = newIndexForClicks
+            addElement(element)
+            newIndexForClicks++
+        })
+
+
+
+        renderHtmlCopyBox()
+        renderCssBoxCopyBox()
+        correntClickedElementIndex = undefined
+        console.log(allElementsArry);
+        showBtns(false)
+    } else {
+        console.log("correntClickedElementIndex didnt clicked on an element", correntClickedElementIndex);
+    }
 
 }
 
@@ -393,16 +456,21 @@ function deleteSpecificElement() {
 
 
 
+async function copyTextAndAlert(textareaId) {
 
 
+    let textarea = document.getElementById(textareaId);
+    try {
+        console.log("in try");
+        await navigator.clipboard.writeText(textarea.value)
+        console.log("test");
+
+    } catch (error) {
+        console.log("Got a catch error", error);
+    }
 
 
-
-
-
-
-
-
+}
 
 
 
@@ -418,5 +486,8 @@ export {
     renderCssBoxCopyBox,
     setElementProperties,
     deleteSpecificElement,
+    updateSpecificElement,
+    clearAll,
+    copyTextAndAlert,
 
 }
