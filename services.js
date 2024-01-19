@@ -57,7 +57,7 @@ let updateCssString = (colorValue) => {
 }
 
 function setElementProperties() {
-    elementObj.indexForClicks = allElementsArry.length + 1
+    elementObj.indexForClicks = allElementsArry.length
     elementObj.type = document.getElementById("type").value
     elementObj.id = document.getElementById("id").value
     elementObj.class = document.getElementById("class").value
@@ -225,19 +225,17 @@ function addElement(obj) {
 
 }
 
-let correntClickedElementIndex = 0
+let correntClickedElementIndex = undefined
 
 function ClickedElementInDom() {
-    console.log("Clicked");
-    console.log("arry", allElementsArry);
-    console.log(this.indexForClicks);
-    console.log(this);
+
 
 
     const specificIndexOfClickedElement = allElementsArry.findIndex((element) => this.indexForClicks === element.indexForClicks)
-    console.log("specificIndexOfClickedElement", specificIndexOfClickedElement);
+
 
     const clickedObj = allElementsArry[specificIndexOfClickedElement]
+    console.log("clickedObj", clickedObj);
 
     //TYPES IDS CLASS AND INNER TEXT
     document.getElementById("type").value = clickedObj.type;
@@ -270,7 +268,7 @@ function ClickedElementInDom() {
     // Border settings
     const borderValue = clickedObj.styles.border;
     const [borderSize, borderType, borderColor] = borderValue.split(' ');
-    console.log(borderSize);
+
     if (borderSize && !isNaN(parseFloat(borderSize))) {
         const sizeWithoutUnits = parseFloat(borderSize);
         document.getElementById("borderSize").value = sizeWithoutUnits
@@ -292,7 +290,7 @@ function ClickedElementInDom() {
 
 function renderHtmlCopyBox() {
 
-
+    console.log("trying to render html box");
     htmlBox.textContent = ""
     for (let i = 0; i < allElementsArry.length; i++) {
         htmlBox.textContent += allElementsArry[i].html;
@@ -304,6 +302,7 @@ function renderHtmlCopyBox() {
 
 function renderCssBoxCopyBox() {
     cssBox.value = cssString + "\n"
+    console.log("trying to render css box");
     for (let i = 0; i < allElementsArry.length; i++) {
         cssBox.value += allElementsArry[i].css;
 
@@ -357,7 +356,11 @@ function handleFormSubmit(event) {
 
 
 
-
+function removeAllChildNodes(parent) {
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
+}
 
 
 
@@ -366,12 +369,17 @@ function handleFormSubmit(event) {
 
 
 function deleteSpecificElement() {
-    console.log("allElementsArry", allElementsArry);
-    if (correntClickedElementIndex != 0) {
+    if (correntClickedElementIndex !== undefined) {
         console.log("delete");
-        allElementsArry.splice(correntClickedElementIndex + 1, 1)
+        removeAllChildNodes(body)
+        allElementsArry.splice(correntClickedElementIndex, 1)
+        let obj = allElementsArry.forEach((element) => {
+            addElement(element)
+        })
+
         renderHtmlCopyBox()
-        renderHtmlCopyBox()
+        renderCssBoxCopyBox()
+        console.log(allElementsArry);
     } else {
         console.log("correntClickedElementIndex didnt clicked on an element", correntClickedElementIndex);
     }
