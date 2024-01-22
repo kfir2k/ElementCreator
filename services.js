@@ -30,7 +30,8 @@ const elementObj = {
         background_color: undefined,
         color: undefined,
         border: undefined,
-        shadow: undefined,
+        box_shadow: undefined,
+        border_radius: undefined,
 
     },
 
@@ -43,7 +44,7 @@ const body = document.getElementById("elementsPage")
 const cssBox = document.getElementById("cssCopyBox")
 const htmlBox = document.getElementById("htmlCopyBox")
 
-export let hexColor = undefined
+
 let cssString = ""
 
 let updateCssString = (colorValue) => {
@@ -61,10 +62,14 @@ function setElementProperties() {
     elementObj.type = document.getElementById("type").value
     elementObj.id = document.getElementById("id").value
     elementObj.class = document.getElementById("class").value
+    //===========================Validations===============================
     if (!isValidId(elementObj.id)) {
         return null
     }
-
+    if (checkAllElementsArrayForDuplicatedProperties(elementObj.type, "type")) {
+        console.log("already exsist");
+    }
+    //=======================================================================
     let innerText = document.getElementById("innerText");
     elementObj.innerText = innerText.value;
 
@@ -98,9 +103,11 @@ function setElementProperties() {
 
     // Border settings
     elementObj.styles.border = `${document.getElementById("borderSize").value}${document.getElementById("unitsBorder").value} ${document.getElementById("borderType").value} ${document.getElementById("borderColor").value}`;
+    elementObj.styles.border_radius = document.getElementById("borderRadius").value;
+
 
     // Shadow
-    elementObj.styles.shadow = document.getElementById("shadow").value;
+    elementObj.styles.box_shadow = document.getElementById("box-shadow").value;
 
     const currentDateAndTime = new Date();
     const formattedDate = `${currentDateAndTime.getFullYear()}-${(currentDateAndTime.getMonth() + 1).toString().padStart(2, '0')}-${currentDateAndTime.getDate().toString().padStart(2, '0')} ${currentDateAndTime.getHours().toString().padStart(2, '0')}:${currentDateAndTime.getMinutes().toString().padStart(2, '0')}:${currentDateAndTime.getSeconds().toString().padStart(2, '0')}`;
@@ -173,8 +180,14 @@ ${allCssBoxStringCombinedAsString}
 
 
     //===============================================================================================
+  
     allElementsArry.push(JSON.parse(JSON.stringify(elementObj)))
+    uploadArrayToLocalStorage("ElementsDB", allElementsArry);
     return JSON.parse(JSON.stringify(elementObj))
+
+
+
+
 
 }
 
@@ -219,6 +232,8 @@ function addElement(obj) {
     el.style.backgroundColor = obj.styles.background_color;
     el.style.color = obj.styles.color;
     el.style.border = obj.styles.border;
+    el.style.borderRadius = obj.styles.border_radius;
+    el.style.boxShadow = obj.styles.box_shadow;
     el.style.position = "relative";
     el.addEventListener('click', ClickedElementInDom.bind(obj));
     body.appendChild(el)
@@ -278,8 +293,11 @@ function ClickedElementInDom() {
 
     document.getElementById("borderType").value = borderType
     document.getElementById("borderColor").value = borderColor
+    document.getElementById("borderRadius").value = clickedObj.styles.border_radius
+
+
     //shadow
-    document.getElementById("shadow").value = clickedObj.styles.shadow
+    document.getElementById("box-shadow").value = clickedObj.styles.box_shadow
 
     correntClickedElementIndex = specificIndexOfClickedElement
     showBtns(true)
@@ -306,7 +324,7 @@ function showBtns(displayStatus) {
 
 function renderHtmlCopyBox() {
 
-    console.log("trying to render html box");
+
     htmlBox.textContent = ""
     for (let i = 0; i < allElementsArry.length; i++) {
         htmlBox.textContent += allElementsArry[i].html;
@@ -318,7 +336,7 @@ function renderHtmlCopyBox() {
 
 function renderCssBoxCopyBox() {
     cssBox.value = cssString + "\n"
-    console.log("trying to render css box");
+
     for (let i = 0; i < allElementsArry.length; i++) {
         cssBox.value += allElementsArry[i].css;
 
@@ -330,7 +348,8 @@ function renderCssBoxCopyBox() {
 function setBackgroundColor(color) {
 
     body.style.backgroundColor = color
-    hexColor = color
+    uploadArrayToLocalStorage("backGroundColor", color)
+    
 
 }
 
@@ -386,15 +405,16 @@ function removeAllChildNodes(parent) {
 
 function deleteSpecificElement() {
     if (correntClickedElementIndex !== undefined) {
-        console.log("delete");
+
         removeAllChildNodes(body)
         allElementsArry.splice(correntClickedElementIndex, 1)
         let newIndexForClicks = 0
-        let obj = allElementsArry.forEach((element) => {
+        allElementsArry.forEach((element) => {
             element.indexForClicks = newIndexForClicks
             addElement(element)
             newIndexForClicks++
         })
+        uploadArrayToLocalStorage("ElementsDB", allElementsArry);
 
         renderHtmlCopyBox()
         renderCssBoxCopyBox()
@@ -409,7 +429,7 @@ function deleteSpecificElement() {
 }
 
 function clearAll() {
-
+    clearLocalStorage();
     removeAllChildNodes(body)
     allElementsArry.splice(0, allElementsArry.length);
     renderHtmlCopyBox()
@@ -431,11 +451,12 @@ function updateSpecificElement() {
         let lastObj = allElementsArry.pop()
         allElementsArry.splice(correntClickedElementIndex, 0, lastObj)
         let newIndexForClicks = 0
-        let obj = allElementsArry.forEach((element) => {
+        allElementsArry.forEach((element) => {
             element.indexForClicks = newIndexForClicks
             addElement(element)
             newIndexForClicks++
         })
+        uploadArrayToLocalStorage("ElementsDB", allElementsArry);
 
 
 
@@ -461,9 +482,23 @@ async function copyTextAndAlert(textareaId) {
 
     let textarea = document.getElementById(textareaId);
     try {
-        console.log("in try");
+
         await navigator.clipboard.writeText(textarea.value)
-        console.log("test");
+
+
+        let alertOnSuccess = document.getElementById("alert-success");
+        alertOnSuccess.style.display = "block"
+        alertOnSuccess.style.fontWeight = "bold"
+
+        
+        document.getElementById("closebtn-success").addEventListener("click", () => {
+            alertOnSuccess.style.display = "none";
+        })
+
+
+        setTimeout(() => {
+            alertOnSuccess.style.display = "none"
+        }, 2000);
 
     } catch (error) {
         console.log("Got a catch error", error);
@@ -471,6 +506,110 @@ async function copyTextAndAlert(textareaId) {
 
 
 }
+
+
+
+
+function uploadArrayToLocalStorage(key, array) {
+    try {
+        // Convert the array to a JSON string and store it in local storage
+        const jsonStr = JSON.stringify(array);
+        localStorage.setItem(key, jsonStr);
+        //console.log(`Array uploaded to local storage with key: ${key}`);
+    } catch (error) {
+        console.error('Error uploading array to local storage:', error);
+    }
+}
+
+// Function to retrieve an array from local storage
+function getArrayFromLocalStorage(key) {
+    try {
+        // Get the JSON string from local storage and parse it to an array
+        const jsonStr = localStorage.getItem(key);
+        if (jsonStr === null) {
+            //console.log(`No array found in local storage with key: ${key}`);
+            return null;
+        }
+
+        const array = JSON.parse(jsonStr);
+        //console.log(`Array retrieved from local storage with key: ${key}`);
+        return array;
+    } catch (error) {
+        console.error('Error retrieving array from local storage:', error);
+        return null;
+    }
+}
+
+function clearLocalStorage() {
+    try {
+        localStorage.clear();
+        console.log("Local storage cleared successfully.");
+    } catch (error) {
+        console.error("Error clearing local storage:", error);
+    }
+}
+
+
+
+function isSavedData() {
+    const gotElementsDB = getArrayFromLocalStorage("ElementsDB");
+    if (gotElementsDB) {
+        allElementsArry.push(...gotElementsDB)
+        console.log("Found an arry");
+        allElementsArry.forEach((element) => {    
+            addElement(element)
+        })
+    } else {
+        console.log("No Array Fond for DOMCONTENTLOADed");
+    }
+    const gotBackgroundColor = getArrayFromLocalStorage("backGroundColor");
+    if (gotBackgroundColor) {
+        setBackgroundColor(gotBackgroundColor)
+        updateCssString(gotBackgroundColor)
+        renderCssBoxCopyBox()
+    }
+    
+
+
+    renderHtmlCopyBox()
+    renderCssBoxCopyBox()
+
+}
+
+
+
+
+function checkAllElementsArrayForDuplicatedProperties(typeValue, typeOfObj) {
+    console.log("start checkAllElementsArrayForDuplicatedProperties");
+    console.log("checkAllElementsArrayForDuplicatedProperties", typeValue, typeOfObj);
+    allElementsArry.some(element => {
+
+        if (element[typeOfObj] === typeValue) {
+            if (element[typeOfObj] != "") {
+                console.log("TRUE");
+                return true
+            }
+            console.log("not false");
+            return false
+        }
+
+
+    }); //true
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -489,5 +628,6 @@ export {
     updateSpecificElement,
     clearAll,
     copyTextAndAlert,
+    isSavedData,
 
 }

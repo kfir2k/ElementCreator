@@ -1,4 +1,13 @@
-import { copyTextAndAlert, updateSpecificElement, clearAll, deleteSpecificElement, renderHtmlCopyBox, addElement, setElementProperties, updateCssString, renderCssBoxCopyBox, setBackgroundColor } from "./services.js"
+import { isSavedData, copyTextAndAlert, updateSpecificElement, clearAll, deleteSpecificElement, renderHtmlCopyBox, addElement, setElementProperties, updateCssString, renderCssBoxCopyBox, setBackgroundColor } from "./services.js"
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    isSavedData()
+
+});
+
+
+
 
 document.getElementById("inputPage1").addEventListener("click", () => {
     document.getElementById("all-border-settings").style.display = "none"
@@ -50,10 +59,13 @@ document.getElementById("colorPickerBackground").addEventListener("input", contr
 // colorPicker.value
 
 function controller() {
+
     let colorValue = document.getElementById("colorPickerBackground").value;
     setBackgroundColor(colorValue)
     updateCssString(colorValue)
     renderCssBoxCopyBox()
+
+
 
     // handleInputChange(colorPicker.value)
 
@@ -90,18 +102,20 @@ document.getElementById("updateBtn").addEventListener("click", updateSpecificEle
 
 
 
-document.getElementById('copyToClipboardCss').addEventListener('click', (event) => {
-    copyTextAndAlert('cssCopyBox');
+document.getElementById('copyToClipboardCss').addEventListener('click', async() => {
+    await copyTextAndAlert('cssCopyBox');
+    console.log("Happend");
 
 });
-document.getElementById('cssCopyBox').addEventListener('click', (event) => {
-    copyTextAndAlert('cssCopyBox');
+document.getElementById('cssCopyBox').addEventListener('click', async() => {
+    await copyTextAndAlert('cssCopyBox');
+    console.log("Happend");
 
 });
 
-document.getElementById('copyToClipboardHtml').addEventListener('click', () => {
+document.getElementById('copyToClipboardHtml').addEventListener('click', async() => {
     copyTextAndAlert('htmlCopyBox');
 });
-document.getElementById('htmlCopyBox').addEventListener('click', () => {
+document.getElementById('htmlCopyBox').addEventListener('click', async() => {
     copyTextAndAlert('htmlCopyBox');
 });
