@@ -66,9 +66,9 @@ function setElementProperties() {
     if (!isValidId(elementObj.id)) {
         return null
     }
-    if (checkAllElementsArrayForDuplicatedProperties(elementObj.type, "type")) {
-        console.log("already exsist");
-    }
+    // if (checkAllElementsArrayForDuplicatedProperties(elementObj.type, "type")) {
+    //     console.log("already exsist");
+    // }
     //=======================================================================
     let innerText = document.getElementById("innerText");
     elementObj.innerText = innerText.value;
@@ -180,7 +180,7 @@ ${allCssBoxStringCombinedAsString}
 
 
     //===============================================================================================
-  
+
     allElementsArry.push(JSON.parse(JSON.stringify(elementObj)))
     uploadArrayToLocalStorage("ElementsDB", allElementsArry);
     return JSON.parse(JSON.stringify(elementObj))
@@ -349,7 +349,7 @@ function setBackgroundColor(color) {
 
     body.style.backgroundColor = color
     uploadArrayToLocalStorage("backGroundColor", color)
-    
+
 
 }
 
@@ -490,7 +490,7 @@ async function copyTextAndAlert(textareaId) {
         alertOnSuccess.style.display = "block"
         alertOnSuccess.style.fontWeight = "bold"
 
-        
+
         document.getElementById("closebtn-success").addEventListener("click", () => {
             alertOnSuccess.style.display = "none";
         })
@@ -556,7 +556,7 @@ function isSavedData() {
     if (gotElementsDB) {
         allElementsArry.push(...gotElementsDB)
         console.log("Found an arry");
-        allElementsArry.forEach((element) => {    
+        allElementsArry.forEach((element) => {
             addElement(element)
         })
     } else {
@@ -568,7 +568,7 @@ function isSavedData() {
         updateCssString(gotBackgroundColor)
         renderCssBoxCopyBox()
     }
-    
+
 
 
     renderHtmlCopyBox()
@@ -579,24 +579,24 @@ function isSavedData() {
 
 
 
-function checkAllElementsArrayForDuplicatedProperties(typeValue, typeOfObj) {
-    console.log("start checkAllElementsArrayForDuplicatedProperties");
-    console.log("checkAllElementsArrayForDuplicatedProperties", typeValue, typeOfObj);
-    allElementsArry.some(element => {
+// function checkAllElementsArrayForDuplicatedProperties(typeValue, typeOfObj) {
+//     console.log("start checkAllElementsArrayForDuplicatedProperties");
+//     console.log("checkAllElementsArrayForDuplicatedProperties", typeValue, typeOfObj);
+//     allElementsArry.some(element => {
 
-        if (element[typeOfObj] === typeValue) {
-            if (element[typeOfObj] != "") {
-                console.log("TRUE");
-                return true
-            }
-            console.log("not false");
-            return false
-        }
+//         if (element[typeOfObj] === typeValue) {
+//             if (element[typeOfObj] != "") {
+//                 console.log("TRUE");
+//                 return true
+//             }
+//             console.log("not false");
+//             return false
+//         }
 
 
-    }); //true
-    
-}
+//     }); //true
+
+// }
 
 
 
