@@ -6,7 +6,7 @@ const elementObj = {
     class: undefined,
     innerText: undefined,
     date: undefined,
-    subElement: false,
+    //subElement: false,
     css: ``,
     html: ``,
     styles: {
@@ -90,8 +90,8 @@ function setElementProperties() {
     elementObj.styles.text_align = document.getElementById("text-align").value;
 
     // Sub Element
-    let subElementCheckbox = document.getElementById("subElement");
-    elementObj.subElement = subElementCheckbox.checked;
+    //let subElementCheckbox = document.getElementById("subElement");
+    //elementObj.subElement = subElementCheckbox.checked;
 
     // Style of element
     elementObj.styles.width = document.getElementById("width").value;
@@ -250,7 +250,7 @@ function ClickedElementInDom() {
 
 
     const clickedObj = allElementsArry[specificIndexOfClickedElement]
-    console.log("clickedObj", clickedObj);
+
 
     //TYPES IDS CLASS AND INNER TEXT
     document.getElementById("type").value = clickedObj.type;
@@ -272,7 +272,7 @@ function ClickedElementInDom() {
     document.getElementById("line-height").value = clickedObj.styles.line_height
     document.getElementById("text-align").value = clickedObj.styles.text_align
     //Sub Element
-    document.getElementById("subElement").value = clickedObj.subElement
+    //document.getElementById("subElement").value = clickedObj.subElement
     // Style of element
     document.getElementById("width").value = clickedObj.styles.width
     document.getElementById("height").value = clickedObj.styles.height
@@ -420,9 +420,9 @@ function deleteSpecificElement() {
         renderCssBoxCopyBox()
         correntClickedElementIndex = undefined
         showBtns(false)
-        console.log(allElementsArry);
+
     } else {
-        console.log("correntClickedElementIndex didnt clicked on an element", correntClickedElementIndex);
+        throw new Error("correntClickedElementIndex didnt clicked on an element", correntClickedElementIndex);
     }
 
 
@@ -436,7 +436,7 @@ function clearAll() {
     renderCssBoxCopyBox()
     correntClickedElementIndex = undefined
     showBtns(false)
-    console.log("clearAll", allElementsArry);
+
 
 }
 
@@ -463,10 +463,10 @@ function updateSpecificElement() {
         renderHtmlCopyBox()
         renderCssBoxCopyBox()
         correntClickedElementIndex = undefined
-        console.log(allElementsArry);
+
         showBtns(false)
     } else {
-        console.log("correntClickedElementIndex didnt clicked on an element", correntClickedElementIndex);
+        throw new Error("correntClickedElementIndex didnt clicked on an element", correntClickedElementIndex);
     }
 
 }
@@ -501,7 +501,7 @@ async function copyTextAndAlert(textareaId) {
         }, 2000);
 
     } catch (error) {
-        console.log("Got a catch error", error);
+       throw new Error("Got a catch error", error);
     }
 
 
@@ -517,7 +517,7 @@ function uploadArrayToLocalStorage(key, array) {
         localStorage.setItem(key, jsonStr);
         //console.log(`Array uploaded to local storage with key: ${key}`);
     } catch (error) {
-        console.error('Error uploading array to local storage:', error);
+        throw new Error('Error uploading array to local storage:', error);
     }
 }
 
@@ -543,7 +543,6 @@ function getArrayFromLocalStorage(key) {
 function clearLocalStorage() {
     try {
         localStorage.clear();
-        console.log("Local storage cleared successfully.");
     } catch (error) {
         console.error("Error clearing local storage:", error);
     }
@@ -555,12 +554,11 @@ function isSavedData() {
     const gotElementsDB = getArrayFromLocalStorage("ElementsDB");
     if (gotElementsDB) {
         allElementsArry.push(...gotElementsDB)
-        console.log("Found an arry");
         allElementsArry.forEach((element) => {
             addElement(element)
         })
     } else {
-        console.log("No Array Fond for DOMCONTENTLOADed");
+        
     }
     const gotBackgroundColor = getArrayFromLocalStorage("backGroundColor");
     if (gotBackgroundColor) {

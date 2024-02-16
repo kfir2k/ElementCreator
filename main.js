@@ -104,12 +104,12 @@ document.getElementById("updateBtn").addEventListener("click", updateSpecificEle
 
 document.getElementById('copyToClipboardCss').addEventListener('click', async() => {
     await copyTextAndAlert('cssCopyBox');
-    console.log("Happend");
+
 
 });
 document.getElementById('cssCopyBox').addEventListener('click', async() => {
     await copyTextAndAlert('cssCopyBox');
-    console.log("Happend");
+
 
 });
 
